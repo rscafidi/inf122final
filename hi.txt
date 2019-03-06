@@ -1,1 +1,3 @@
-hi
+You will need to commit and then push to the server. Once you are ready, create pull request to merge to master. 
+Use github desktop. Only use your own branch. To get code, go to branch (under
+branch menu), UPDATE FROM MASTER, UPDATED BASED ON CURRENT MASTER.
