@@ -58,8 +58,6 @@ public class BoardGame {
 			public void handle(MouseEvent arg0) {
 				rowClicked = rowIndex;
 				colClicked = colIndex;
-				System.out.print(rowClicked);
-				System.out.println(colClicked);
 			}
 	    	
 	    });
@@ -70,7 +68,15 @@ public class BoardGame {
 		ObservableList<Node> childrens = boardGame.getChildren();
 		for (Node node : childrens) {
 	        if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
-	        	node = new ImageView(image);
+	        	Pane cell = new Pane(new ImageView(image));
+	    	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	    			@Override
+	    			public void handle(MouseEvent arg0) {
+	    				rowClicked = rowIndex;
+	    				colClicked = colIndex;
+	    			}
+	    	    	
+	    	    });
 	        }
 		}
 	}
