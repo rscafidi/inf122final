@@ -1,0 +1,15 @@
+.pane:hover {
+    -fx-background-color: darkred ;
+}
+
+.pane {
+    -fx-background-color: aquamarine;
+}
+
+.clickedAndMiss {
+    -fx-background-color: grey;
+}
+
+.clickedAndHit {
+    -fx-background-color: pink;
+}
