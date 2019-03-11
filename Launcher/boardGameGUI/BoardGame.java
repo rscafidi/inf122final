@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 public class BoardGame {
     private GridPane boardGame;
     private int rowClicked = 0, colClicked = 0;
+    //Make sure to reset the boardClicked to false after you made the move
+    private boolean boardClicked = false;
     
 	public BoardGame(int rows, int cols) throws IOException {
 		Stage primaryStage = new Stage();
@@ -58,6 +60,7 @@ public class BoardGame {
 			public void handle(MouseEvent arg0) {
 				rowClicked = rowIndex;
 				colClicked = colIndex;
+				boardClicked = true;
 			}
 	    	
 	    });
@@ -74,6 +77,7 @@ public class BoardGame {
 	    			public void handle(MouseEvent arg0) {
 	    				rowClicked = rowIndex;
 	    				colClicked = colIndex;
+	    				boardClicked = true;
 	    			}
 	    	    	
 	    	    });
