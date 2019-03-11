@@ -1,5 +1,5 @@
 package gameenvironmentplugin;
-public enum CheckerType
+public enum GameTokenType
 {
    BLACK_REGULAR,
    BLACK_KING,
