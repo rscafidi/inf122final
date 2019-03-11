@@ -2,6 +2,8 @@ package Launcher;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import boardGameGUI.BoardGame;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,7 +21,7 @@ public class LauncherController {
 	
 	@FXML
 	private Button confirmP2;
-	
+
 	@FXML
 	protected String getPlayer1Name() {
 		return p1Name.getText();
@@ -53,7 +55,7 @@ public class LauncherController {
         }
         if(duplicatedName()) {
         	showAlert(Alert.AlertType.ERROR, p1Error, "Duplicated Names!",
-                    "Please change one of the names so they can be unique :)");
+                    "Please change the names so they can be unique :)");
             return;
         }
         p1Name.setDisable(true);
@@ -70,13 +72,36 @@ public class LauncherController {
         }
         if(duplicatedName()) {
         	showAlert(Alert.AlertType.ERROR, p2Error, "Duplicated Names!",
-                    "Please change one of the names so they can be unique :)");
+                    "Please change the names so they can be unique :)");
             return;
         }
         p2Name.setDisable(true);
         confirmP2.setDisable(true);
 	}
 	
+	@FXML
+	protected void startTicTacToe(MouseEvent event) {
+		//Dummy code
+		System.out.println("Starting TicTacToe...");
+	}
 	
+	@FXML
+	protected void startCheckers(MouseEvent event) {
+		//Dummy code
+		System.out.println("Starting Checkers...");
+	}
+	
+	@FXML
+	protected void startMemory(MouseEvent event) {
+		//Dummy code
+		System.out.println("Starting Memory...");
+	}
+	
+	@FXML
+	protected void startBattleship(MouseEvent event) throws Exception{
+		//Dummy code
+		System.out.println("Starting Battleship...");
+		new BoardGame(10, 10);
+	}
 
 }
