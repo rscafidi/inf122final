@@ -1,4 +1,9 @@
 package sample;
 
-public class Setup {
+public class Setup{
+    BattleshipGameLogic logic = new BattleshipGameLogic();
+
+    public Setup() {
+    }
+
 }

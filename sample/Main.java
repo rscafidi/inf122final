@@ -32,11 +32,7 @@ public class Main extends Application {
     private static final int gridSize = 10; //what is purpose of this???
     private static final int BOARD_WIDTH = 10;
     private static final int BOARD_HEIGHT = 10;
-    private static final int CARRIER = 5;
-    private static final int BATTLESHIP = 4;
-    private static final int CRUISER = 3;
-    private static final int SUBMARINE = 3;
-    private static final int DESTROYER = 2;
+
 
 
     private static int Ships[][] = new int[BOARD_WIDTH][BOARD_HEIGHT];
