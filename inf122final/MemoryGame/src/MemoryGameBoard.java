@@ -1,49 +1,41 @@
+import javafx.scene.image.Image;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MemoryGameBoard {
 
     // Fields
-    public static Player playerOne = new Player();
-    public static Player playerTwo = new Player();
+    public static MemoryPlayer playerOne = new MemoryPlayer();
+    public static MemoryPlayer playerTwo = new MemoryPlayer();
 
     public static Card[][] gameGrid;
 
-    private static GridSizes gridSizes = new GridSizes();
-    private static CardNames cardNames = new CardNames();
+    public static CardNames cardNames = new CardNames();
 
-    private static int currentTurn = 0;  //player one goes first
-    private static int rows;
-    private static int cols;
-    private static int numCards;
+    public static int currentTurn = 0;  //player one goes first
+    public static int rows;
+    public static int cols;
+    public static int numCards;
 
 
     // Constructors
-    public MemoryGameBoard() { }
+    public MemoryGameBoard() {
+        this.rows = 8;
+        this.cols = 8;
+        this.numCards = rows * cols / 2;
+    }
 
 
     // Methods
-
-    /**
-     * Gets the user to select the grid size and sets it as the game board size
-     */
-    public static void chooseGridSize() {
-        //these should be selected using the GUI, 0 is a filler value
-        int rowDim = 0;
-        int colDim = 0;
-
-        rows = gridSizes.selectRowSize(rowDim);
-        cols = gridSizes.selectColSize(colDim);
-        numCards = rows * cols / 2;
-    }
-
     /**
      * Takes the row and col fields and sets up the game board with Card objects for play
      */
     public static void setGameGrid() {
         gameGrid = new Card[rows][cols];
 
-        ArrayList<String> cardNamesChosen = new ArrayList<String>(Arrays.asList(cardNames.selectCardNames(numCards)));
+        ArrayList<String> cardNamesChosen = new ArrayList<String>(Arrays.asList(cardNames.getAllPossibleCardNames()));
 
         int numSelected = 0;
         while (numSelected < numCards) {
@@ -55,7 +47,8 @@ public class MemoryGameBoard {
                 int rowIndex = (int)(Math.random() * rows);
                 int colIndex = (int)(Math.random() * cols);
                 if (gameGrid[rowIndex][colIndex] == null) {
-                    gameGrid[rowIndex][colIndex] = new Card(name,rowIndex,colIndex);
+                    String imgURL = "Resources/" + name + ".png";
+                    gameGrid[rowIndex][colIndex] = new Card(name,new Image(new File(imgURL).toURI().toString(),75,75,true,false),rowIndex,colIndex);
                     cardsSelected++;
                 }
             }
@@ -79,6 +72,19 @@ public class MemoryGameBoard {
     }
 
     /**
+     * Checks to see which player has the current turn
+     * @return playerOne if currentTurn is 0, playerTwo if currentTurn is 1
+     */
+    public static MemoryPlayer getCurrentPlayer() {
+        if (currentTurn == 0) {
+            return playerOne;
+        }
+        else {
+            return playerTwo;
+        }
+    }
+
+    /**
      * Gets the two card's locations and sets those cards as null to represent that they've already been matched and
      * are now unselectable
      * @param card1 the first card to be set as null
@@ -86,8 +92,8 @@ public class MemoryGameBoard {
      */
     public static void removeCards(Card card1, Card card2) {
         //setting element to null indicates the card no longer exists, should no longer be displayed in GUI
-        gameGrid[card1.getRow()][card1.getCol()] = null;
-        gameGrid[card2.getRow()][card2.getRow()] = null;
+        gameGrid[card1.getRow()][card1.getCol()].changeState();
+        gameGrid[card2.getRow()][card2.getCol()].changeState();
         numCards -= 2;
     }
 
@@ -98,11 +104,27 @@ public class MemoryGameBoard {
      * @return true if cards match and false if cards don't match
      */
     public static boolean findMatch(Card card1, Card card2) {
+        changeTurn();
         if (card1.getName().equals(card2.getName())) {
             removeCards(card1,card2);
             return true;
         }
+        card1.flip();
+        card2.flip();
         return false;
+    }
+
+    /**
+     * Checks to see if there are any remaining cards
+     * @return true if 0 cards remaining, false if there are still cards remaining
+     */
+    public static boolean gameFinished() {
+        if (numCards == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
