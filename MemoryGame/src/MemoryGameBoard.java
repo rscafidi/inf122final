@@ -12,13 +12,13 @@ public class MemoryGameBoard {
 
     public static Card[][] gameGrid;
 
-    public static GridSizes gridSizes = new GridSizes();
     public static CardNames cardNames = new CardNames();
 
     public static int currentTurn = 0;  //player one goes first
-    public static int rows;
-    public static int cols;
-    public static int numCards;
+
+    public static final int rows = 6;
+    public static final int cols = 6;
+    public static int numCards = 18;
 
 
     // Constructors
@@ -27,14 +27,14 @@ public class MemoryGameBoard {
 
     // Methods
 
-    /**
-     * Gets the user to select the grid size and sets it as the game board size
-     */
-    public static void chooseGridSize(int selectRows, int selectCols) {
-        rows = selectRows;
-        cols = selectCols;
-        numCards = rows * cols / 2;
-    }
+//    /**
+//     * Gets the user to select the grid size and sets it as the game board size
+//     */
+//    public static void chooseGridSize(int selectRows, int selectCols) {
+//        rows = selectRows;
+//        cols = selectCols;
+//        numCards = rows * cols / 2;
+//    }
 
     /**
      * Takes the row and col fields and sets up the game board with Card objects for play
@@ -97,7 +97,7 @@ public class MemoryGameBoard {
         //setting element to null indicates the card no longer exists, should no longer be displayed in GUI
         gameGrid[card1.getRow()][card1.getCol()].changeState();
         gameGrid[card2.getRow()][card2.getCol()].changeState();
-        numCards -= 2;
+        numCards--;
     }
 
     /**

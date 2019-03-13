@@ -18,10 +18,10 @@ import static javafx.application.Application.launch;
 public class DrawMemoryGameBoard extends Application{
 
     public static Stage window;
-    public static Scene startScene, gameScene;
-    public static Button button;
-    public static ComboBox<Integer> rows;
-    public static ComboBox<Integer> cols;
+    public static Scene gameScene;  //startScene,
+//    public static Button button;
+//    public static ComboBox<Integer> rows;
+//    public static ComboBox<Integer> cols;
 
     public static GridPane memoryGrid = new GridPane();
 
@@ -45,61 +45,61 @@ public class DrawMemoryGameBoard extends Application{
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Memory Game");
-        button = new Button("Finish");
 
-        rows = new ComboBox<>();
-        rows.getItems().addAll(2,4,6,8);
-        rows.setPromptText("Select Number of Rows");
+        memoryGameBoard.setGameGrid();
 
-        cols = new ComboBox<>();
-        cols.getItems().addAll(2,4,6,8);
-        cols.setPromptText("Select Number of Columns");
+        memoryGrid.setPadding(new Insets(10,10,10,10));
+        memoryGrid.setGridLinesVisible(true);
+        memoryGrid.setAlignment(Pos.CENTER);
+//        memoryGrid.setHgap(10);
+//        memoryGrid.setVgap(10);
+        //button = new Button("Finish");
 
-        button.setOnAction(e -> startGame());
+//        rows = new ComboBox<>();
+//        rows.getItems().addAll(2,4,6,8);
+//        rows.setPromptText("Select Number of Rows");
+//
+//        cols = new ComboBox<>();
+//        cols.getItems().addAll(2,4,6,8);
+//        cols.setPromptText("Select Number of Columns");
+//
+//        button.setOnAction(e -> startGame());
+//
+//        VBox startLayout = new VBox(20);
+//        startLayout.setPadding(new Insets(20,20,20,20));
+//        startLayout.getChildren().addAll(rows, cols, button);
+        drawGrid();
 
-        VBox startLayout = new VBox(20);
-        startLayout.setPadding(new Insets(20,20,20,20));
-        startLayout.getChildren().addAll(rows, cols, button);
-
-        startScene = new Scene(startLayout,300,250);
-        window.setScene(startScene);
+        gameScene = new Scene(memoryGrid,800,800);
+        window.setScene(gameScene);
         window.show();
 
     }
 
-    public void startGame() {
-        if (rows.getValue() != null && cols.getValue() != null) {
-            memoryGameBoard.chooseGridSize(rows.getValue(), cols.getValue());
-            memoryGameBoard.setGameGrid();
-
-            memoryGrid.setPadding(new Insets(10,10,10,10));
-            memoryGrid.setGridLinesVisible(true);
-            memoryGrid.setHgap(10);
-            memoryGrid.setVgap(10);
-
-//            scorePane.setTranslateY(75+rows.getValue()*75);
-//            turnPane.setTranslateX(75+cols.getValue()*75);
+//    public void startGame() {
+//        if (rows.getValue() != null && cols.getValue() != null) {
+//            //memoryGameBoard.chooseGridSize(rows.getValue(), cols.getValue());
 //
-//            winnerPane.setTranslateX(75+cols.getValue()*75);
-//            winnerPane.setTranslateY(75);
-
-            drawGrid();
-            //drawMenu();
-
-//            scorePane.getChildren().addAll(playerOneLabel,playerTwoLabel);
-//            turnPane.getChildren().add(currentPlayerTurn);
-//            winnerPane.getChildren().add(winningPlayer);
 //
-//            HBox hBox = new HBox();
-//            hBox.getChildren().addAll(memoryGrid,scorePane,turnPane,winnerPane);
-
-            //StackPane layout2 = new StackPane();
-            gameScene = new Scene(memoryGrid,800,800);
-            window.setScene(gameScene);
-
-
-        }
-    }
+////            scorePane.setTranslateY(75+rows.getValue()*75);
+////            turnPane.setTranslateX(75+cols.getValue()*75);
+////
+////            winnerPane.setTranslateX(75+cols.getValue()*75);
+////            winnerPane.setTranslateY(75);
+//            //drawMenu();
+//
+////            scorePane.getChildren().addAll(playerOneLabel,playerTwoLabel);
+////            turnPane.getChildren().add(currentPlayerTurn);
+////            winnerPane.getChildren().add(winningPlayer);
+////
+////            HBox hBox = new HBox();
+////            hBox.getChildren().addAll(memoryGrid,scorePane,turnPane,winnerPane);
+//
+//            //StackPane layout2 = new StackPane();
+//
+//
+//        }
+//    }
 
     public void drawGrid() {
         for (int r = 0; r < memoryGameBoard.rows; r++) {
