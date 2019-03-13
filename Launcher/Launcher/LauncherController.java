@@ -11,10 +11,10 @@ import javafx.stage.Window;
 
 public class LauncherController {
 	@FXML
-    private static TextField p1Name;
+    private TextField p1Name;
 	
 	@FXML
-	private static TextField p2Name;
+	private TextField p2Name;
 	
 	@FXML
 	private Button confirmP1;
@@ -23,12 +23,12 @@ public class LauncherController {
 	private Button confirmP2;
 
 	@FXML
-	static String getPlayer1Name() {
+	public String getPlayer1Name() {
 		return p1Name.getText();
 	}
 	
 	@FXML
-	static String getPlayer2Name() {
+	public String getPlayer2Name() {
 		return p2Name.getText();
 	}
 	
