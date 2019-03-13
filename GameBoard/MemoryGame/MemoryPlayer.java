@@ -1,14 +1,18 @@
 package MemoryGame;
 
-public class MemoryPlayer {
+import GameEnvironment.Player;
+
+public class MemoryPlayer extends Player {
 
     // Fields
-    private int score = 0;
+    private int playerScore;
     public Card[] flippedCards = new Card[2];
 
 
     // Constructors
-    public MemoryPlayer() { }
+    public MemoryPlayer(String userName, int turn) {
+        // TODO
+    }
 
 
     // Methods
@@ -17,7 +21,7 @@ public class MemoryPlayer {
      * @return the score field
      */
     public int getScore() {
-        return this.score;
+        return this.playerScore;
     }
 
     /**

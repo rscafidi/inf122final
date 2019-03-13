@@ -1,5 +1,6 @@
 package Launcher;
 
+import MemoryGame.MemoryGameBoard;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -8,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
+
+import java.io.IOException;
 
 public class LauncherController {
 	@FXML
@@ -93,10 +96,17 @@ public class LauncherController {
 	}
 	
 	@FXML
-	protected void startMemory(MouseEvent event) {
+	protected void startMemory(MouseEvent event) throws IOException {
 		//Dummy code
 		System.out.println("Starting Memory...");
 		//Run game here
+
+		int rows = 6;
+		int cols = 6;
+
+		System.out.println("hi");
+		MemoryGameBoard memoryGame = new MemoryGameBoard();
+
 	}
 	
 	@FXML
