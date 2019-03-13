@@ -42,7 +42,7 @@ public class MemoryGameBoard {
     public static void setGameGrid() {
         gameGrid = new Card[rows][cols];
 
-        ArrayList<String> cardNamesChosen = new ArrayList<String>(Arrays.asList(cardNames.selectCardNames(numCards)));
+        ArrayList<String> cardNamesChosen = new ArrayList<String>(Arrays.asList(cardNames.getAllPossibleCardNames()));
 
         int numSelected = 0;
         while (numSelected < numCards) {
