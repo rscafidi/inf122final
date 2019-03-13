@@ -11,10 +11,10 @@ import javafx.stage.Window;
 
 public class LauncherController {
 	@FXML
-    private TextField p1Name;
+    private static TextField p1Name;
 	
 	@FXML
-	private TextField p2Name;
+	private static TextField p2Name;
 	
 	@FXML
 	private Button confirmP1;
@@ -23,19 +23,18 @@ public class LauncherController {
 	private Button confirmP2;
 
 	@FXML
-	protected String getPlayer1Name() {
+	static String getPlayer1Name() {
 		return p1Name.getText();
 	}
 	
 	@FXML
-	protected String getPlayer2Name() {
+	static String getPlayer2Name() {
 		return p2Name.getText();
 	}
 	
 	public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
@@ -83,25 +82,28 @@ public class LauncherController {
 	protected void startTicTacToe(MouseEvent event) {
 		//Dummy code
 		System.out.println("Starting TicTacToe...");
+		//Run game here
 	}
 	
 	@FXML
 	protected void startCheckers(MouseEvent event) {
 		//Dummy code
 		System.out.println("Starting Checkers...");
+		//Run game here
 	}
 	
 	@FXML
 	protected void startMemory(MouseEvent event) {
 		//Dummy code
 		System.out.println("Starting Memory...");
+		//Run game here
 	}
 	
 	@FXML
 	protected void startBattleship(MouseEvent event) throws Exception{
 		//Dummy code
 		System.out.println("Starting Battleship...");
-		new BoardGame(10, 10);
+		//Run game here
 	}
 
 }

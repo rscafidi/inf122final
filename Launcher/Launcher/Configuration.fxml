@@ -46,22 +46,22 @@
             <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="ticTacToe" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startTicTacToe" pickOnBounds="true" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startTicTacToe" pickOnBounds="true" GridPane.rowIndex="1">
                <image>
                   <Image url="@../../resources/tic-tac-toe-icon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="checkers" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startCheckers" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startCheckers" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
                   <Image url="@../../resources/checkers-icon.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="memory" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startMemory" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startMemory" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
                   <Image url="@../../resources/memory-icon.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="battleship" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startBattleship" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startBattleship" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
                   <Image url="@../../resources/battleship-icon.jpg" />
                </image>

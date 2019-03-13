@@ -17,15 +17,25 @@ import javafx.stage.Stage;
 
 public class BoardGame {
     private GridPane boardGame;
-    private int rowClicked = 0, colClicked = 0;
+	private int rowClicked = 0, colClicked = 0;
     //Make sure to reset the boardClicked to false after you made the move
     private boolean boardClicked = false;
     
-	public BoardGame(int rows, int cols) throws IOException {
+	public BoardGame(int rows, int cols, String gameName) throws IOException {
 		Stage primaryStage = new Stage();
 		boardGame = new GridPane();
-		initializeBoard(rows, cols, "/boardGameGUI/ocean-cell.png");
-		primaryStage.setTitle("Battleship");
+		switch (gameName) {
+			case "Battleship":
+				initializeBoard(rows, cols, "/boardGameGUI/ocean-cell.png");
+				break;
+			case "Memory":
+				initializeBoard(rows, cols, "path/to/memory/cell");
+				break;
+			case "TicTacToe":
+				initializeBoard(rows, cols, "path/to/tictactoe/cell");
+				break;
+		}
+		primaryStage.setTitle(gameName);
 		primaryStage.initModality(Modality.WINDOW_MODAL);
 		boardGame.setGridLinesVisible(true);
 		primaryStage.setScene(new Scene(boardGame, 600, 600));
