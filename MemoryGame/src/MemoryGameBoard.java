@@ -26,16 +26,6 @@ public class MemoryGameBoard {
 
 
     // Methods
-
-//    /**
-//     * Gets the user to select the grid size and sets it as the game board size
-//     */
-//    public static void chooseGridSize(int selectRows, int selectCols) {
-//        rows = selectRows;
-//        cols = selectCols;
-//        numCards = rows * cols / 2;
-//    }
-
     /**
      * Takes the row and col fields and sets up the game board with Card objects for play
      */
@@ -149,6 +139,5 @@ public class MemoryGameBoard {
             return "TIE";
         }
     }
-
 
 }

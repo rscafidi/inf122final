@@ -10,7 +10,6 @@ public class MemoryPlayer {
 
 
     // Methods
-
     /**
      * Returns the score the player currently has
      * @return the score field
@@ -25,7 +24,6 @@ public class MemoryPlayer {
     public void incrementScore() {
         this.score++;
     }
-
 
     /**
      * Checks to see if the player has matching cards, if so increment score, if not, do nothing
