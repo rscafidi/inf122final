@@ -44,8 +44,10 @@ public class MemoryGameBoard {
                 int rowIndex = (int)(Math.random() * rows);
                 int colIndex = (int)(Math.random() * cols);
                 if (gameGrid[rowIndex][colIndex] == null) {
-                    String imgURL = "Resources/" + name + ".png";
+                    String imgURL = "MemoryGame/Resources/" + name + ".png";
                     gameGrid[rowIndex][colIndex] = new Card(name,new Image(new File(imgURL).toURI().toString(),75,75,true,false),rowIndex,colIndex);
+                    String file = new File(imgURL).toURI().toString();
+                    System.out.println(file);
                     cardsSelected++;
                 }
             }
