@@ -83,7 +83,6 @@ public class CheckersGame extends Game {
         }
     }
 
-    @Override
     public boolean isLegalMove(String currentMove, GameTokenType gameToken) {
         if (currentMove == "black") {
             if (gameToken == GameTokenType.BLACK_KING

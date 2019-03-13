@@ -33,7 +33,15 @@ public abstract class Game {
         return winner;
     }
     
-    public abstract boolean isDone(); //CREATE METHOD
+    public boolean isDone()
+    {
+        //CREATE METHOD
+        return false;
+    }
     
-    public abstract boolean isLegalMove(String currentMove, GameTokenType gameToken); //CREATE METHOD
+    public boolean isLegalMove(int x, int y) 
+    {
+        //CREATE METHOD
+        return false;
+    }
 }
