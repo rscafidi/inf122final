@@ -8,11 +8,12 @@ public class Card {
     // Fields
 
     private String name;
-    private ImageView imageView;
+    private String orientation;
+    private ImageView image;
     private int row;
     private int col;
-    private boolean flipped = false;
-    private boolean state = true;
+    private boolean flipped;
+    private boolean alive;
 
 
 
@@ -20,7 +21,9 @@ public class Card {
 
     public Card(String name, Image image, int row, int col) {
         this.name = name;
-        this.imageView = new ImageView(image);
+        this.image = new ImageView(image);
+        this.flipped = false;
+        this.alive = true;
         this.row = row;
         this.col = col;
     }
@@ -38,15 +41,25 @@ public class Card {
         return this.name;
     }
 
-    public ImageView getImage() { return this.imageView; }
+    public ImageView getImage() { return this.image; }
 
-    public boolean getState() { return this.state; }
+    public boolean getStatus() { return this.alive; }
 
-    public boolean getFlipped() {
-        return this.flipped;
+    public boolean getFlipped() { return this.flipped; }
+
+    public void changeStatus() { this.alive = false; }
+
+    /**
+     * Sets the flipped field to true to show that this card is flipped
+     */
+    public void flip() {
+        if (this.flipped) {
+            this.flipped = false;
+        }
+        else {
+            this.flipped = true;
+        }
     }
-
-    public void changeState() { this.state = false; }
 
     /**
      * Returns the row this card is located at
@@ -64,17 +77,6 @@ public class Card {
         return this.col;
     }
 
-    /**
-     * Sets the flipped field to true to show that this card is flipped
-     */
-    public void flip() {
-        if (this.flipped) {
-            this.flipped = false;
-        }
-        else {
-            this.flipped = true;
-        }
-    }
 
 
 }
