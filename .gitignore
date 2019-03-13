@@ -144,4 +144,11 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+.idea/compiler.xml
+.idea/description.html
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+FINAL.iml
 inf122final.iml
