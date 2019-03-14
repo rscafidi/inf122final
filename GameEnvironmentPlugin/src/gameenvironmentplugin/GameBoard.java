@@ -151,37 +151,48 @@ public class GameBoard extends JComponent {
                 System.out.println("Y = " + GameBoard.this.gameIndex.y + " oldy = " + oldy);
 
                 if ((GameBoard.this.gameIndex.x - oldx) == 0 && ((GameBoard.this.gameIndex.y - oldy) == 4 || (GameBoard.this.gameIndex.y - oldy) == -4)) {
-                    //Check if x+ or -2 and y == 1/2 is clear
-                    boolean needCheck = false;
+                    //Check if x+ or -2 and y == 1/2 is clear, then check same with y == 2*
+                    boolean foundProblem = false;
                     int halfx = GameBoard.this.gameIndex.x + 2;
-                    int halfy = (GameBoard.this.gameIndex.y + oldy) / 2;
+                    int halfy = (GameBoard.this.gameIndex.y + oldy)/2;
 
                     for (GamePiece gameIndex : gameIndexes) {
                         if (gameIndex != GameBoard.this.gameIndex && gameIndex.x == GameBoard.this.gameIndex.x + 2
                                 && gameIndex.y == (GameBoard.this.gameIndex.y + oldy) / 2) {
                             halfx = 100;
                             halfy = 100;
-                            needCheck = true;
+                            foundProblem = true;
                             System.out.println("It's not clear");
                             break;
                         }
                     }
-
-                    if (needCheck) {
+                    
+                    boolean foundSecondProblem = false;
+                    if (foundProblem) {
                         halfx = GameBoard.this.gameIndex.x - 2;
-                        halfy = (GameBoard.this.gameIndex.y + oldy) / 2;
+                        halfy = (GameBoard.this.gameIndex.y + oldy)/2;
                         for (GamePiece gameIndex : gameIndexes) {
                             if (gameIndex != GameBoard.this.gameIndex && gameIndex.x == GameBoard.this.gameIndex.x - 2
                                     && gameIndex.y == (GameBoard.this.gameIndex.y + oldy) / 2) {
                                 halfx = 100;
                                 halfy = 100;
+                                foundSecondProblem = true;
                                 System.out.println("It's not clear");
                                 break;
                             }
                         }
                     }
-
-                    System.out.println("Made it to two squares - double jump rare!\n");
+                    
+                   
+                    if(foundProblem && foundSecondProblem)
+                    {
+                        System.out.println("Didn't make it!\n");
+                    }
+                    else
+                    {
+                        System.out.println("Made it to the second round!");
+                    }
+                    
 
                     //Check the piece jumped across
                     GameTokenType myGamePiece = GameTokenType.UNDEFINED;
@@ -194,8 +205,8 @@ public class GameBoard extends JComponent {
                     int tempx2 = 100;
                     int tempy2 = 100;
 
-                    System.out.println("X:= " + GameBoard.this.gameIndex.x + "  Y:= " + GameBoard.this.gameIndex.y);
-                    System.out.println("oldX:= " + oldx + " oldY:= " + oldy);
+                    //System.out.println("X:= " + GameBoard.this.gameIndex.x + "  Y:= " + GameBoard.this.gameIndex.y);
+                    //System.out.println("oldX:= " + oldx + " oldY:= " + oldy);
 
                     for (GamePiece gameIndex : gameIndexes) {
                         if (gameIndex != GameBoard.this.gameIndex
@@ -205,11 +216,11 @@ public class GameBoard extends JComponent {
                             toRemove = gameIndex;
                             tempx = gameIndex.x;
                             tempy = gameIndex.y;
-                            System.out.println("Remove checker X = " + gameIndex.x + "Y = " + gameIndex.y);
+                            System.out.println("Flag Removal checker X = " + gameIndex.x + "Y = " + gameIndex.y);
                             break;
                         }
                     }
-                    System.out.println("tempx = " + tempx + " tempy = " + tempy);
+                  //  System.out.println("tempx = " + tempx + " tempy = " + tempy);
                     for (GamePiece gameIndex2 : gameIndexes) {
                         if (gameIndex2 != GameBoard.this.gameIndex
                                 && gameIndex2.x == (GameBoard.this.gameIndex.x + halfx) / 2
@@ -218,11 +229,11 @@ public class GameBoard extends JComponent {
                             toRemove2 = gameIndex2;
                             tempx2 = gameIndex2.x;
                             tempy2 = gameIndex2.y;
-                            System.out.println("Remove checker X = " + gameIndex2.x + "Y = " + gameIndex2.y);
+                            System.out.println("Flag Removal checker X = " + gameIndex2.x + "Y = " + gameIndex2.y);
                             break;
                         }
                     }
-                    System.out.println("tempx2= " + tempx2 + " tempy2 = " + tempy2);
+                   // System.out.println("tempx2= " + tempx2 + " tempy2 = " + tempy2);
                     System.out.println(myGamePiece);
                     System.out.println(myGamePiece2);
 
