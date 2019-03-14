@@ -1,7 +1,7 @@
 package GameEnvironment;
-import java.io.IOException;
-
 import boardGameGUI.BoardGame;
+
+import java.io.IOException;
 public abstract class GameDriver {
 	
 	private BoardGame boardGUI;
