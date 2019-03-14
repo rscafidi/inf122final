@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import memGame.DrawMemoryDriver;
 import memGame.MemoryDriver;
 
 public class BoardGame {
@@ -22,6 +23,7 @@ public class BoardGame {
 	public int rowClicked = 0, colClicked = 0;
     //Make sure to reset the boardClicked to false after you made the move
     public boolean boardClicked = false;
+    //public static DrawMemoryDriver drawMemoryDriver;
     
 	public BoardGame(int rows, int cols, String gameName) throws IOException {
 		Stage primaryStage = new Stage();
@@ -73,6 +75,8 @@ public class BoardGame {
 				rowClicked = rowIndex;
 				colClicked = colIndex;
 				boardClicked = true;
+				DrawMemoryDriver.handleMove();
+				boardClicked = false;
 			}
 	    	
 	    });
@@ -90,12 +94,19 @@ public class BoardGame {
 	    				rowClicked = rowIndex;
 	    				colClicked = colIndex;
 	    				boardClicked = true;
+						DrawMemoryDriver.handleMove();
+	    				boardClicked = false;
 	    			}
 	    	    	
 	    	    });
+	    	    boardGame.add(cell,colIndex,rowIndex);
+				boardGame.setGridLinesVisible(false);
+				boardGame.setGridLinesVisible(true);
+	    	    break;
 	        }
 		}
 	}
+
 }
 
 

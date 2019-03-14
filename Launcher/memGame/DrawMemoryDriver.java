@@ -2,9 +2,11 @@ package memGame;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,10 +16,23 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 import static javafx.application.Application.launch;
 
 
 public class DrawMemoryDriver {// extends Application{
+
+    public static MemoryDriver memoryDriver;
+
+    public DrawMemoryDriver(String player1Name, String player2Name, int rows, int cols, String gameName) {
+        try {
+            memoryDriver = new MemoryDriver(player1Name, player2Name, rows, cols, gameName);
+            memoryDriver.runGame();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 //    public static Stage window;
 //    public static Scene gameScene;  //startScene,
@@ -121,17 +136,34 @@ public class DrawMemoryDriver {// extends Application{
 //            }
 //        }
 //    }
-
-    public void flipUp(ImageView image, Runnable action) {
-        System.out.println("flip up called");
-        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), image);
-        ft.setToValue(1);
-        ft.setOnFinished(event -> action.run());
-        ft.play();
+    public static void handleMove() {
+        memoryDriver.runTurn();
     }
 
-    public void flipDown(ImageView image) {
-        System.out.println("flip down called");
+    public static void flipUp(GridPane boardGame, int colIndex, int rowIndex, ImageView image, Runnable action) {
+        ObservableList<Node> childrens = boardGame.getChildren();
+        for (Node node : childrens) {
+            if (GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
+                FadeTransition ft = new FadeTransition(Duration.seconds(0.5), image);
+                ft.setToValue(1);
+                ft.setOnFinished(event -> action.run());
+                ft.play();
+                break;
+            }
+        }
+    }
+
+    public static void flipDown(GridPane boardGame, int colIndex, int rowIndex, ImageView image) {
+        ObservableList<Node> childrens = boardGame.getChildren();
+        for (Node node : childrens) {
+            if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
+                FadeTransition ft = new FadeTransition(Duration.seconds(0.5), image);
+                ft.setToValue(0);
+                ft.play();
+                break;
+            }
+
+        }
 //        double delay;
 //        if (start) {  //minimize the delay so players cannot see card images yet
 //            delay = 0.01;
@@ -139,9 +171,6 @@ public class DrawMemoryDriver {// extends Application{
 //        else {
 //            delay = 0.5;
 //        }
-        FadeTransition ft = new FadeTransition(Duration.seconds(0.5), image);
-        ft.setToValue(0);
-        ft.play();
     }
 
 

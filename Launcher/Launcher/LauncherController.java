@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
+import memGame.DrawMemoryDriver;
 import memGame.MemoryDriver;
 
 import java.io.IOException;
@@ -99,12 +100,13 @@ public class LauncherController {
 	protected void startMemory(MouseEvent event) {
 		//Dummy code
 		System.out.println("Starting Memory...");
-		try {
-			MemoryDriver memoryDriver = new MemoryDriver(p1Name.getText(), p2Name.getText(), 6, 6, "Memory");
-			memoryDriver.runGame();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//try {
+		DrawMemoryDriver drawMemoryDriver = new DrawMemoryDriver(p1Name.getText(), p2Name.getText(), 6, 6, "Memory");
+			//MemoryDriver memoryDriver = new MemoryDriver(p1Name.getText(), p2Name.getText(), 6, 6, "Memory");
+			//memoryDriver.runGame();
+		//} catch (IOException e) {
+		//	e.printStackTrace();
+		//}
 
 
 		//Run game here
