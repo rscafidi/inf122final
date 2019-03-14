@@ -3,14 +3,11 @@ package Launcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import boardGameGUI.BoardGame;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Window;
-import sample.BattleshipGameLogic;
-import sample.DrawBattleshipGameBoard;
-import sample.Setup;
+import BattleShip.DrawBattleshipGameBoard;
 
 public class LauncherController {
 	@FXML
@@ -104,8 +101,7 @@ public class LauncherController {
 	protected void startBattleship(MouseEvent event) throws Exception{
 		//Dummy code
 		System.out.println("Starting Battleship...");
-
-		new Setup();
+		new DrawBattleshipGameBoard();
 	}
 
 }

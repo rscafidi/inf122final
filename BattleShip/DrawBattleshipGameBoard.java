@@ -1,9 +1,4 @@
-package sample;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+package BattleShip;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -29,13 +24,18 @@ public class DrawBattleshipGameBoard {
     static final int DESTROYER = 1;
     private GridPane boardGame;
     int rowClicked = 0, colClicked = 0;
-    static Image defaultBoardCell = new Image("/boardGameGUI/ocean-cell.png");
+    static Image defaultBoardCell = new Image("/BattleShip/ocean-cell.png");
+    static Image hitBoardCell = new Image("/BattleShip/ocean-hit-cell.png");
+    static Image missBoardCell = new Image("/BattleShip/ocean-miss-cell.png");
+    boolean clickMade = false;
+    BattleshipGameLogic Logic = new BattleshipGameLogic();
+
 
     public DrawBattleshipGameBoard() {
         try {
             Stage primaryStage = new Stage();
             boardGame = new GridPane();
-            initializeBoard(BOARD_WIDTH, BOARD_HEIGHT, "/boardGameGUI/ocean-cell.png");
+            initializeBoard(BOARD_WIDTH, BOARD_HEIGHT, "/BattleShip/ocean-cell.png");
             primaryStage.setTitle("Battleship");
             primaryStage.initModality(Modality.WINDOW_MODAL);
             boardGame.setGridLinesVisible(true);
@@ -66,21 +66,25 @@ public class DrawBattleshipGameBoard {
     }
 
 
-    public void addCell(int rowIndex, int colIndex, Image image) {
+    public void addCell(int rowIndex, int colIndex, Image image){
         Pane cell = new Pane(new ImageView(image));
         cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
                 rowClicked = rowIndex;
                 colClicked = colIndex;
+                clickMade = true;
                 //System.out.println(rowClicked + " _ " + colClicked);
+                //BattleshipGameLogic.moveAttempted(colClicked, rowClicked);
+                Logic.makeMove(rowClicked, colClicked);
+                updateGameBoard(Logic);
             }
 
         });
         boardGame.add(cell, colIndex, rowIndex);
     }
 
-    public void modifyCell(int colIndex, int rowIndex, Image image) {
+    public void modifyCell(int colIndex, int rowIndex, Image image){
         ObservableList<Node> childrens = boardGame.getChildren();
         for (Node node : childrens) {
             if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
@@ -90,10 +94,33 @@ public class DrawBattleshipGameBoard {
                     public void handle(MouseEvent arg0) {
                         rowClicked = rowIndex;
                         colClicked = colIndex;
+                        clickMade = true;
+                        //BattleshipGameLogic.moveAttempted(colClicked, rowClicked);
+                        Logic.makeMove(rowClicked, colClicked);
+                        updateGameBoard(Logic);
                     }
 
                 });
+                boardGame.add(cell,colIndex,rowIndex);
+                boardGame.setGridLinesVisible(false);
+                boardGame.setGridLinesVisible(true);
+                break;
+            }
+        }
+    }
 
+
+
+    void updateGameBoard(BattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
+        for (int i = 0; i < logic.currentPlayer().playerOceanHits.length; i++ ) {
+            for (int j = 0; j < logic.currentPlayer().playerOceanHits[i].length; j++ ) {
+                if (logic.currentPlayer().playerOceanHits[i][j] == 1) {
+                    modifyCell(j, i, hitBoardCell);
+                } else if (logic.currentPlayer().playerOceanHits[i][j] == 2) {
+                    modifyCell(j, i, missBoardCell);
+                } else {
+                    modifyCell(j, i, DrawBattleshipGameBoard.defaultBoardCell);
+                }
             }
         }
     }

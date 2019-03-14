@@ -1,4 +1,4 @@
-package sample;
+package BattleShip;
 
 import java.util.Random;
 
@@ -89,8 +89,10 @@ public class BattleshipPlayer {
 
     void printPlayerOceanHits() {
         System.out.print("playerOceanHits: \n");
-        for (int i = 0; i < DrawBattleshipGameBoard.BOARD_WIDTH; i++) {
-            for (int j = 0; j < DrawBattleshipGameBoard.BOARD_HEIGHT; j++) {
+        for (int i = 0; i < DrawBattleshipGameBoard.BOARD_HEIGHT; i++) {
+            //System.out.print("ROWS: ");
+            for (int j = 0; j < DrawBattleshipGameBoard.BOARD_WIDTH; j++) {
+                //System.out.print(" ["+i+"]["+j+"]" + playerOceanHits[i][j] + " ");
                 System.out.print(" " + playerOceanHits[i][j] + " ");
             }
             System.out.println();
