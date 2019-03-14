@@ -3,6 +3,7 @@ package Launcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import GameEnvironment.TestDriver;
 import boardGameGUI.BoardGame;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -21,15 +22,19 @@ public class LauncherController {
 	
 	@FXML
 	private Button confirmP2;
+	
+	public String player1, player2;
 
 	@FXML
 	public String getPlayer1Name() {
-		return p1Name.getText();
+		player1 = p1Name.getText();
+		return player1;
 	}
 	
 	@FXML
 	public String getPlayer2Name() {
-		return p2Name.getText();
+		player2 = p2Name.getText();
+		return player2;
 	}
 	
 	public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
@@ -103,7 +108,7 @@ public class LauncherController {
 	protected void startBattleship(MouseEvent event) throws Exception{
 		//Dummy code
 		System.out.println("Starting Battleship...");
-		//Run game here
+		TestDriver test = new TestDriver(player1, player2, 10, 10);
 	}
 
 }
