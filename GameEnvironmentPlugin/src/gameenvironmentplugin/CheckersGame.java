@@ -6,18 +6,21 @@
 package gameenvironmentplugin;
 
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
  * @author hbradt
  */
-public class CheckersGame extends Game {
+public class CheckersGame extends GameDriver {
 
     public int numRed = 12;   // Number of red left
     public int numBlack = 12; // Number of black left
 
     @Override
-    public GameBoard createGameBoard() {
+    public GameBoard runGame() {
         //Add pieces to the board
         GameBoard myBoard = new GameBoard();
 
@@ -66,15 +69,20 @@ public class CheckersGame extends Game {
         return false;
     }
     
+    public String getWinner()
+    {
+        return this.winner;
+    }
+    
     boolean switchTurn(boolean moved, String color) {
         if(moved && color == "red")
         {
-            currentMove = "black";
+            this.currentTurn = "black";
             return true;
         }
         else if(moved && color == "black")
         {
-            currentMove = "red";
+            this.currentTurn = "red";
             return true;
         }
         else
@@ -83,8 +91,8 @@ public class CheckersGame extends Game {
         }
     }
 
-    public boolean isLegalMove(String currentMove, GameTokenType gameToken) {
-        if (currentMove == "black") {
+    public boolean checkValidMove(String currentTurn, GameTokenType gameToken) {
+        if (this.currentTurn == "black") {
             if (gameToken == GameTokenType.BLACK_KING
                     || gameToken == GameTokenType.BLACK_REGULAR) {
                 //do nothing and continue

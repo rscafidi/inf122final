@@ -32,7 +32,7 @@ public class GameBoard extends JComponent {
         //Initialize arrays
         gameIndexes = new ArrayList<>();
         boardSize = new Dimension(BOARDSIZE, BOARDSIZE);
-        myGame.currentMove = "black";
+        myGame.currentTurn = "black";
         myRules();
     }
 
@@ -94,7 +94,7 @@ public class GameBoard extends JComponent {
                 // if it is legal continue else return the game piece to the original settings
                 //********************************************************
                 // current logic below is to determine whose turn it is
-                if (myGame.currentMove == "black") {
+                if (myGame.currentTurn == "black") {
                     if (GameBoard.this.gameIndex.gamePiece.gameTokenType == GameTokenType.BLACK_KING
                             || GameBoard.this.gameIndex.gamePiece.gameTokenType == GameTokenType.BLACK_REGULAR) {
                         //do nothing and continue
@@ -644,16 +644,16 @@ public class GameBoard extends JComponent {
                 //Repaint and switch move
                 repaint();
                 //Check for kinged checkers
-                if (moved && GameBoard.this.gameIndex.y == 8 && myGame.currentMove == "red") {
+                if (moved && GameBoard.this.gameIndex.y == 8 && myGame.currentTurn == "red") {
                     GameBoard.this.gameIndex.gamePiece.gameTokenType = GameTokenType.RED_KING;
-                } else if (moved && GameBoard.this.gameIndex.y == 1 && myGame.currentMove == "black") {
+                } else if (moved && GameBoard.this.gameIndex.y == 1 && myGame.currentTurn == "black") {
                     GameBoard.this.gameIndex.gamePiece.gameTokenType = GameTokenType.BLACK_KING;
                 } else {
                     //Do nothing
                 }
                 //Repaint and switch move
                 repaint();
-                myGame.switchTurn(moved, myGame.currentMove);
+                myGame.switchTurn(moved, myGame.currentTurn);
             }
         });
 

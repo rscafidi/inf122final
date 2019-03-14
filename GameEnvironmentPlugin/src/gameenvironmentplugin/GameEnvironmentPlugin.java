@@ -8,13 +8,13 @@ public class GameEnvironmentPlugin extends JFrame
 {
     
     // Place holder for the game
-    Game myGame = new CheckersGame();
+    GameDriver myGame = new CheckersGame();
     
    public GameEnvironmentPlugin(String title)
    {
         super(title);       
         //Add pieces to the board
-        GameBoard myBoard = myGame.createGameBoard();
+        GameBoard myBoard = myGame.runGame();
         setContentPane(myBoard);
         pack();
         setVisible(true);
