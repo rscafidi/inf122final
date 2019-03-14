@@ -4,12 +4,12 @@ import boardGameGUI.BoardGame;
 import java.io.IOException;
 public abstract class GameDriver {
 	
-	private BoardGame boardGUI;
-	private GamePiece[][] boardArray;
-	private int currentPlayer;
-	private Player[] players;
-	private String winner;
-	public GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
+	protected BoardGame boardGUI;
+	protected GamePiece[][] boardArray;
+	protected int currentPlayer;
+	protected Player[] players;
+	protected String winner;
+	protected GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
 		boardArray = new GamePiece[rows][cols];
 	}
 	public abstract void initializeBoardArray();

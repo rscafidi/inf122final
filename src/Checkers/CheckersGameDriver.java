@@ -1,0 +1,154 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Checkers;
+
+import static javax.swing.JOptionPane.showMessageDialog;
+
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+import GameEnvironment.GameDriver;
+
+/**
+ *
+ * @author hbradt
+ */
+public class CheckersGameDriver extends GameDriver {
+	CheckersBoardGame myBoard;
+	String currentTurn;
+
+    public CheckersGameDriver(String player1Name, String player2Name, int rows, int cols, String gameName)
+			throws IOException {
+		super(player1Name, player2Name, rows, cols, gameName);
+	}
+
+	public int numRed = 12;   // Number of red left
+    public int numBlack = 12; // Number of black left
+
+    @Override
+    public void runGame() {
+    	JFrame holder = new JFrame("Checkers");
+    	initializeBoardArray();
+        holder.setContentPane(myBoard);
+        holder.pack();
+        holder.setVisible(true);
+    }
+
+    public boolean isDone() {
+        if (numRed == 0) {
+            this.winner = "black";
+            showMessageDialog(null, "Black Wins!");
+            return true;
+        }
+        if (numBlack == 0) {
+            this.winner = "red";
+            showMessageDialog(null, "Red Wins!");
+            return true;
+        }
+        return false;
+    }
+    
+    public String getWinner()
+    {
+        return this.winner;
+    }
+    
+    boolean switchTurn(boolean moved, String color) {
+        if(moved && color == "red")
+        {
+            this.currentTurn = "black";
+            return true;
+        }
+        else if(moved && color == "black")
+        {
+            this.currentTurn = "red";
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public boolean checkValidMove(String currentTurn, GameTokenType gameToken) {
+        if (this.currentTurn == "black") {
+            if (gameToken == GameTokenType.BLACK_KING
+                    || gameToken == GameTokenType.BLACK_REGULAR) {
+                //do nothing and continue
+                System.out.println("Continuing past skip!\n");
+            } else {
+                showMessageDialog(null, "Black's turn!");
+                return false;
+            }
+        } else if (gameToken == GameTokenType.RED_KING
+                || gameToken == GameTokenType.RED_REGULAR) {
+            //do nothing and continue
+            System.out.println("Continuing past skip!\n");
+        } else {
+            showMessageDialog(null, "Red's turn!");
+            return false;
+        }
+        return true;
+    }
+
+	@Override
+	public void initializeBoardArray() {
+		//Add pieces to the board
+		try {
+        myBoard = new CheckersBoardGame();
+		} catch (Exception e) {
+			
+		}
+
+        // place the red pieces
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 1, 2);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 1, 4);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 1, 6);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 1, 8);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 2, 1);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 2, 3);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 2, 5);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 2, 7);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 3, 2);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 3, 4);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 3, 6);
+        myBoard.add(new CheckerPiece(GameTokenType.RED_REGULAR), 3, 8);
+
+        // place the black pieces
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 8, 1);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 8, 3);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 8, 5);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 8, 7);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 7, 2);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 7, 4);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 7, 6);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 7, 8);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 6, 1);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 6, 3);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 6, 5);
+        myBoard.add(new CheckerPiece(GameTokenType.BLACK_REGULAR), 6, 7);
+		
+	}
+
+	@Override
+	public boolean isLegalMove(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void makeMove(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateScore(int playerIndex, int value) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,5 +1,8 @@
 package Launcher;
 
+import java.io.IOException;
+
+import Checkers.CheckersGameDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -89,10 +92,11 @@ public class LauncherController {
 	}
 	
 	@FXML
-	protected void startCheckers(MouseEvent event) {
+	protected void startCheckers(MouseEvent event) throws IOException {
 		//Dummy code
 		System.out.println("Starting Checkers...");
 		//Run game here
+		new CheckersGameDriver("haha", "haha", 10, 10, "Checkers").runGame();
 	}
 	
 	@FXML
