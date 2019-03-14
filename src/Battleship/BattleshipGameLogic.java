@@ -1,4 +1,4 @@
-package BattleShip;
+package Battleship;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -45,6 +45,7 @@ public class BattleshipGameLogic {
             changeTurn(); //change players
             //updateGameBoard();
         } else {
+
             System.out.println("Invalid move try again.");
         }
     }
