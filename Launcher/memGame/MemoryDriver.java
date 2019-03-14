@@ -11,14 +11,14 @@ public class MemoryDriver extends GameDriver{
 
     // Fields
 
-    public MemoryPlayer[] memoryPlayers;
+    //public MemoryPlayer[] memoryPlayers;
     public MemoryBoardGame memoryBoardGame;
    // public int currentTurn = 0;  //player one goes first
 
 
     public MemoryDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
         super(player1Name, player2Name, rows, cols, gameName);
-        this.memoryPlayers = new MemoryPlayer[]{new MemoryPlayer(player1Name, 0), new MemoryPlayer(player2Name, 1)};
+        //this.memoryPlayers = new MemoryPlayer[]{new MemoryPlayer(player1Name, 0), new MemoryPlayer(player2Name, 1)};
         this.currentPlayer = 0;
     }
     // Methods
@@ -29,27 +29,9 @@ public class MemoryDriver extends GameDriver{
         //drawMemoryDriver = new DrawMemoryDriver();
     }
 
-    /**
-//     * Changes the player's turns
-//     * 0 - playerOne's turn
-//     * 1 - playerTwo's turn
-//     */
-//    public static void switchTurn() {
-//        if (currentTurn == 0) {
-//            currentTurn = 1;
-//        }
-//        else {
-//            currentTurn = 0;
-//        }
-//    }
-
 
     public MemoryPlayer getPlayer() {
-        return memoryPlayers[currentPlayer];
-    }
-
-    public void drawGameMenu() {
-
+        return players[currentPlayer];
     }
 
 
@@ -91,7 +73,6 @@ public class MemoryDriver extends GameDriver{
             }
 
             player.resetPlayerCard();
-            switchTurn();
         }
     }
 
@@ -100,11 +81,8 @@ public class MemoryDriver extends GameDriver{
      * @return a string stating the winner of the match, or if it's a tie
      */
     public String getWinner() {
-        if (memoryPlayers[0].getScore() > memoryPlayers[1].getScore()) {
-            return "PLAYER ONE";
-        }
-        else if (memoryPlayers[0].getScore() > memoryPlayers[1].getScore()) {
-            return "PLAYER TWO";
+        if (players[0].getScore() != players[1].getScore()) {
+            return getPlayer().getUserName();
         }
         else {
             return "TIE";
@@ -112,7 +90,7 @@ public class MemoryDriver extends GameDriver{
     }
 
     public void updateScore() {
-        memoryPlayers[currentPlayer].incrementScore();
+        players[currentPlayer].incrementScore();
     }
 
     public boolean isGameOver() {
@@ -144,8 +122,8 @@ public class MemoryDriver extends GameDriver{
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
-                    boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,new Image("/boardGameGUI/memory-cell.jpg", 100,100,true,false));
-                    boardGUI.modifyCell(otherCard.getCol(),otherCard.getRow(),new Image("/boardGameGUI/memory-cell.jpg", 100,100,true,false));
+                    boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,new Image("/boardGameGUI/memory-cell.jpg", 100,85,false,false));
+                    boardGUI.modifyCell(otherCard.getCol(),otherCard.getRow(),new Image("/boardGameGUI/memory-cell.jpg", 100,85,false,false));
 //                }
 //                    DrawMemoryDriver.flipUp(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImageView(), () -> {
 //                        if (clickedCard.getStatus()) {
@@ -154,10 +132,22 @@ public class MemoryDriver extends GameDriver{
 //                        }
 //                    });
                 }
+                else {
+                    //updateScore();
+                    if (currentPlayer == 0) {
+                        boardGUI.updatePlayer1Score();
+                    }
+                    else {
+                        boardGUI.updatePlayer2Score();
+                    }
+                }
+                switchTurn();
+                boardGUI.switchTurnGUI();
             }
         }
         if (isGameOver()) {
-            System.out.println(getWinner());
+            //System.out.println(getWinner());
+            boardGUI.displayWinner(getWinner());
         }
     }
 

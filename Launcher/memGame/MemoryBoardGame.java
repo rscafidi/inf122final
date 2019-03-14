@@ -29,7 +29,7 @@ public class MemoryBoardGame {
                 int colIndex = (int)(Math.random() * 6);
                 if (grid[rowIndex][colIndex] == null) {
                     String imgURL = "Resources/" + name + ".png";
-                    grid[rowIndex][colIndex] = new Card(name,new Image(new File(imgURL).toURI().toString(),100,100,true,false), rowIndex,colIndex);
+                    grid[rowIndex][colIndex] = new Card(name,new Image(new File(imgURL).toURI().toString(),100,85,false,false), rowIndex,colIndex);
                     cardsSelected++;
                 }
             }
