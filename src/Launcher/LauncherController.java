@@ -1,5 +1,6 @@
 package Launcher;
 
+import Battleship.DrawBattleshipGameBoard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -104,9 +105,12 @@ public class LauncherController {
 	
 	@FXML
 	protected void startBattleship(MouseEvent event) throws Exception{
-		//Dummy code
 		System.out.println("Starting Battleship...");
-		TestDriver test = new TestDriver("Me", "you", 10, 10, "Battleship");
+		//to use abstracted classes, uncomment this line.
+		//current issue:  model does not work because both players are attached
+		//to the game board.
+//		BattleshipDriver battleshipDriver = new BattleshipDriver(player1, player2, 10, 10, "Battleship");
+		new DrawBattleshipGameBoard();
 	}
 
 }
