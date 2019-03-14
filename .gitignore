@@ -149,3 +149,5 @@ local.properties
 .idea/modules.xml
 .idea/vcs.xml
 inf122final.iml
+META-INF/MANIFEST.MF
+.idea/artifacts/inf122final_jar.xml
