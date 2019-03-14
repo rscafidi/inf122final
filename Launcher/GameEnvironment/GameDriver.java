@@ -10,8 +10,6 @@ public abstract class GameDriver {
 	private Player[] players;
 	private String winner;
 	public GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
-		players = new Player[]{new Player(player1Name, 0), new Player(player2Name, 1)};
-		boardGUI = new BoardGame(players[0], players[1], rows, cols, gameName);
 		boardArray = new GamePiece[rows][cols];
 	}
 	public abstract void initializeBoardArray();
@@ -31,10 +29,7 @@ public abstract class GameDriver {
 		}
 	}
 	//Will add score on GUI soon so you can update it along with this
-	public void updateScore(int playerIndex, int value) {
-		players[playerIndex].setPlayerScore(value);
-	}
-	public abstract boolean isGameOver();
+	public abstract void updateScore(int playerIndex, int value);
 	public abstract boolean isLegalMove(int x, int y);
 	public abstract void makeMove(int x, int y);
 }
