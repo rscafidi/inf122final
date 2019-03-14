@@ -15,5 +15,12 @@ public class Player {
 	public void setPlayerScore(int score) {
 		playerScore = score;
 	}
-
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	public int getScore() {
+		return playerScore;
+	}
 }
