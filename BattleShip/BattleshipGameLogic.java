@@ -1,26 +1,31 @@
-package BattleShip;
+package Battleship;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class BattleshipGameLogic {
     int currPlayer = 1;
-    BattleshipPlayer player1 = new BattleshipPlayer("p1");
-    BattleshipPlayer player2 = new BattleshipPlayer("p2");
+    BattleshipPlayer player1;
+    BattleshipPlayer player2;
     //DrawBattleshipGameBoard board = new DrawBattleshipGameBoard();
     //DrawBattleshipGameBoard board;
     ArrayList<Point> moves = new ArrayList<Point>();
+    BattleshipPlayer winner = null;
 
 
-    public BattleshipGameLogic() {
+    public BattleshipGameLogic(String p1, String p2) {
+        player1 = new BattleshipPlayer(p1);
+        player2 = new BattleshipPlayer(p2);
         generateValidMovesList(); //generating valid moves for first player [starting player]
     }
 
     void checkForWinner() { //currently just to see if it works or not
         if (player1.playerScore >= 17) { //17 because if every single ship is hit it totals to 17
             System.out.println("Player 1 wins");
+            this.winner = player1;
         } else if (player2.playerScore >= 17) {
             System.out.println("Player 2 wins");
+            this.winner = player2;
         }
     }
 

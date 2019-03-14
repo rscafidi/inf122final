@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.9145077720207254" minHeight="550.0" minWidth="700.0" orientation="VERTICAL" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Launcher.LauncherController">
+<SplitPane dividerPositions="0.9145077720207254" minHeight="550.0" minWidth="700.0" orientation="VERTICAL" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Launcher.LauncherController">
   <items>
       <AnchorPane maxHeight="350.0" maxWidth="513.0" minHeight="350.0" minWidth="800.0" prefHeight="350.0" prefWidth="800.0">
          <children>
@@ -23,8 +23,8 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="253.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Name" textAlignment="CENTER" />
-            <Text layoutX="253.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2's Name" textAlignment="CENTER" />
+            <Text layoutX="232.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Name" textAlignment="CENTER" />
+            <Text layoutX="232.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2's Name" textAlignment="CENTER" />
             <Button fx:id="confirmP1" layoutX="515.0" layoutY="242.0" mnemonicParsing="false" onAction="#confirmP1Clicked" text="OK" />
             <Button fx:id="confirmP2" layoutX="515.0" layoutY="298.0" mnemonicParsing="false" onAction="#confirmP2Clicked" text="OK" />
             <ImageView fitHeight="175.0" fitWidth="272.0" layoutX="275.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
@@ -46,24 +46,24 @@
             <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="ticTacToe" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startTicTacToe" pickOnBounds="true" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startTicTacToe" pickOnBounds="true" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../resources/tic-tac-toe-icon.png" />
+                  <Image url="@/resources/tic-tac-toe-icon.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="checkers" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startCheckers" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startCheckers" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../resources/checkers-icon.jpg" />
+                  <Image url="@/resources/checkers-icon.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="memory" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startMemory" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startMemory" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../resources/memory-icon.jpg" />
+                  <Image url="@/resources/memory-icon.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="battleship" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startBattleship" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startBattleship" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../resources/battleship-icon.jpg" />
+                  <Image url="@/resources/battleship-icon.jpg" />
                </image>
             </ImageView>
          </children>

@@ -1,4 +1,4 @@
-package BattleShip;
+package Battleship;
 
 import java.util.Random;
 
@@ -99,4 +99,11 @@ public class BattleshipPlayer {
         }
     }
 
+    public String getUserName() {
+        return playerName;
+    }
+
+    public int getScore() {
+        return playerScore;
+    }
 }

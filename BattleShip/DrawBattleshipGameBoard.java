@@ -1,4 +1,4 @@
-package BattleShip;
+package Battleship;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -24,18 +24,18 @@ public class DrawBattleshipGameBoard {
     static final int DESTROYER = 1;
     private GridPane boardGame;
     int rowClicked = 0, colClicked = 0;
-    static Image defaultBoardCell = new Image("/BattleShip/ocean-cell.png");
-    static Image hitBoardCell = new Image("/BattleShip/ocean-hit-cell.png");
-    static Image missBoardCell = new Image("/BattleShip/ocean-miss-cell.png");
+    static Image defaultBoardCell = new Image("/Battleship/ocean-cell.png");
+    static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
+    static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
     boolean clickMade = false;
-    BattleshipGameLogic Logic = new BattleshipGameLogic();
+    BattleshipGameLogic Logic = new BattleshipGameLogic("p1","p2");
 
 
     public DrawBattleshipGameBoard() {
         try {
             Stage primaryStage = new Stage();
             boardGame = new GridPane();
-            initializeBoard(BOARD_WIDTH, BOARD_HEIGHT, "/BattleShip/ocean-cell.png");
+            initializeBoard(BOARD_WIDTH, BOARD_HEIGHT, "/Battleship/ocean-cell.png");
             primaryStage.setTitle("Battleship");
             primaryStage.initModality(Modality.WINDOW_MODAL);
             boardGame.setGridLinesVisible(true);
