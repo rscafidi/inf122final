@@ -3,14 +3,11 @@ package memGame;
 import GameEnvironment.GamePiece;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Card extends GamePiece{
 
     // Fields
 
-    //private String name;
-    private ImageView imageView;
     private int row;
     private int col;
     private boolean flipped;
@@ -22,9 +19,6 @@ public class Card extends GamePiece{
 
     public Card(String name, Image image, int row, int col) {
         super(name,image);
-        //this.name = name;
-        //this.image = new ImageView(image);
-        this.imageView = new ImageView(image);
         this.flipped = false;
         this.alive = true;
         this.row = row;
@@ -35,16 +29,6 @@ public class Card extends GamePiece{
 
 
     // Methods
-
-//    /**
-//     * Returns the name field
-//     * @return the name field
-//     */
-//    public String getName() {
-//        return this.name;
-//    }
-//
-    public ImageView getImageView() { return this.imageView; }
 
     public boolean getStatus() { return this.alive; }
 

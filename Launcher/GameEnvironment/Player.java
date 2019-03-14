@@ -6,6 +6,8 @@ public class Player {
 	private String userName;
 	private int playerTurn;
 	private int playerScore;
+	private GamePiece gamePiece;
+
 	public Player(String userName, int turn) {
 		this.userName = userName;
 		playerTurn = turn;
@@ -22,5 +24,13 @@ public class Player {
 
 	public int getScore() {
 		return playerScore;
+	}
+
+	public GamePiece getGamePiece() {
+		return this.gamePiece;
+	}
+
+	public void setGamePiece(GamePiece gamePiece) {
+		this.gamePiece = gamePiece;
 	}
 }

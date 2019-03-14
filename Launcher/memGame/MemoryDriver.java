@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class MemoryDriver extends GameDriver{
 
@@ -30,7 +29,7 @@ public class MemoryDriver extends GameDriver{
     }
 
 
-    public MemoryPlayer getPlayer() {
+    public Player getPlayer() {
         return players[currentPlayer];
     }
 
@@ -43,7 +42,7 @@ public class MemoryDriver extends GameDriver{
     }
 
     public boolean firstMove() {
-        if (getPlayer().getPlayerCard() == null) {
+        if (getPlayer().getGamePiece() == null) {
             return true;
         }
         return false;
@@ -51,28 +50,33 @@ public class MemoryDriver extends GameDriver{
 
     public void makeMove(int row, int col) {
         Card card = memoryBoardGame.grid[row][col];
-        MemoryPlayer player = getPlayer();
+        Player player = getPlayer();
 
         memoryBoardGame.flipCards(row,col);
 
         if (firstMove()) {
-            player.addPlayerCard(card);
+            player.setGamePiece(card);
+            //player.addPlayerCard(card);
         }
         else {
-            Card otherCard = player.getPlayerCard();
-
+            Card otherCard = (Card)player.getGamePiece();
             if (otherCard.getName().equals(card.getName())) {
                 memoryBoardGame.updateCards(row,col);
                 memoryBoardGame.updateCards(otherCard.getRow(),otherCard.getCol());
                 memoryBoardGame.numMatches--;
-                updateScore();
+                System.out.println(otherCard.getName());
+
+                int score = getPlayer().getScore();
+                updateScore(currentPlayer,++score);
+                System.out.println(getPlayer().getScore());
+                //updateScore();
             }
             else {
                 memoryBoardGame.flipCards(row,col);
                 memoryBoardGame.flipCards(otherCard.getRow(),otherCard.getCol());
             }
 
-            player.resetPlayerCard();
+            player.setGamePiece(null);
         }
     }
 
@@ -81,8 +85,11 @@ public class MemoryDriver extends GameDriver{
      * @return a string stating the winner of the match, or if it's a tie
      */
     public String getWinner() {
-        if (players[0].getScore() != players[1].getScore()) {
-            return getPlayer().getUserName();
+        if (players[0].getScore() > players[1].getScore()) {
+            return players[0].getUserName();
+        }
+        else if (players[0].getScore() < players[1].getScore()) {
+            return players[1].getUserName();
         }
         else {
             return "TIE";
@@ -90,11 +97,12 @@ public class MemoryDriver extends GameDriver{
     }
 
     public void updateScore() {
-        players[currentPlayer].incrementScore();
+        Player current = players[currentPlayer];
+        int score = current.getScore();
+        current.setPlayerScore(++score);
     }
 
     public boolean isGameOver() {
-        System.out.println(memoryBoardGame.numMatches);
         if (memoryBoardGame.numMatches == 0) {
             return true;
         }
@@ -105,49 +113,40 @@ public class MemoryDriver extends GameDriver{
         initializeBoardArray();
     }
 
-    public void runTurn() {
+
+    public void runTurn(GridPane boardGame) {
         Card clickedCard = memoryBoardGame.grid[boardGUI.rowClicked][boardGUI.colClicked];
         if (isLegalMove(boardGUI.rowClicked, boardGUI.colClicked)) {
-            boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,clickedCard.getImage());
+            //boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,clickedCard.getImage());
             if (firstMove()) {
                 makeMove(boardGUI.rowClicked, boardGUI.colClicked);
-                //DrawMemoryDriver.flipUp(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImageView(), () -> {});
-            }
-            else {
-                Card otherCard = getPlayer().getPlayerCard();
+                DrawMemoryDriver.flipUp(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImage(), () -> {
+                });
+            } else {
+                Player player = getPlayer();
+                Card otherCard = (Card)player.getGamePiece();
                 makeMove(boardGUI.rowClicked, boardGUI.colClicked);
-                if (clickedCard.getStatus()) {
-//                    try {
-//                        TimeUnit.SECONDS.sleep(1);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-                    boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,new Image("/boardGameGUI/memory-cell.jpg", 100,85,false,false));
-                    boardGUI.modifyCell(otherCard.getCol(),otherCard.getRow(),new Image("/boardGameGUI/memory-cell.jpg", 100,85,false,false));
-//                }
-//                    DrawMemoryDriver.flipUp(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImageView(), () -> {
-//                        if (clickedCard.getStatus()) {
-//                            DrawMemoryDriver.flipDown(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImageView());
-//                            DrawMemoryDriver.flipDown(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImageView());
-//                        }
-//                    });
-                }
-                else {
-                    //updateScore();
+                DrawMemoryDriver.flipUp(boardGame, boardGUI.colClicked, boardGUI.rowClicked, clickedCard.getImage(), () -> {
+                    if (clickedCard.getStatus()) {
+                        boardGUI.modifyCell(boardGUI.colClicked, boardGUI.rowClicked, new Image("/boardGameGUI/memory-cell.jpg", 100, 85, false, false));
+                        boardGUI.modifyCell(otherCard.getCol(), otherCard.getRow(), new Image("/boardGameGUI/memory-cell.jpg", 100, 85, false, false));
+                    }
+                });
+                if (!clickedCard.getStatus()) {
                     if (currentPlayer == 0) {
                         boardGUI.updatePlayer1Score();
-                    }
-                    else {
+                    } else {
                         boardGUI.updatePlayer2Score();
                     }
                 }
+
                 switchTurn();
                 boardGUI.switchTurnGUI();
             }
-        }
-        if (isGameOver()) {
-            //System.out.println(getWinner());
-            boardGUI.displayWinner(getWinner());
+
+            if (isGameOver()) {
+                boardGUI.displayWinner(getWinner());
+            }
         }
     }
 
