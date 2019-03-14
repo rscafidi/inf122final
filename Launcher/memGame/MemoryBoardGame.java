@@ -28,8 +28,8 @@ public class MemoryBoardGame {
                 int rowIndex = (int)(Math.random() * 6);
                 int colIndex = (int)(Math.random() * 6);
                 if (grid[rowIndex][colIndex] == null) {
-                    String imgURL = "Resources/" + name + ".png";
-                    grid[rowIndex][colIndex] = new Card(name,new Image(new File(imgURL).toURI().toString(),100,85,false,false), rowIndex,colIndex);
+                    String imgURL = "/resources/" + name + ".png";
+                    grid[rowIndex][colIndex] = new Card(name,new Image("/resources/" + name + ".png",100,85,false,false), rowIndex,colIndex);
                     cardsSelected++;
                 }
             }

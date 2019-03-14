@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="inf122final:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/inf122final_jar</output-path>
+    <root id="archive" name="inf122final.jar">
+      <element id="module-output" name="inf122final" />
+    </root>
+  </artifact>
+</component>
