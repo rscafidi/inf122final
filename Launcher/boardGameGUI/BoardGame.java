@@ -1,6 +1,5 @@
 package boardGameGUI;
 
-import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -21,7 +20,7 @@ public class BoardGame {
     //Make sure to reset the boardClicked to false after you made the move
     private boolean boardClicked = false;
     
-	public BoardGame(int rows, int cols, String gameName) throws IOException {
+	public BoardGame(int rows, int cols, String gameName) {
 		Stage primaryStage = new Stage();
 		boardGame = new GridPane();
 		switch (gameName) {

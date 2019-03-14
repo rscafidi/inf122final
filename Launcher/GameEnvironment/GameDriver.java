@@ -1,6 +1,4 @@
 package GameEnvironment;
-import java.io.IOException;
-
 import boardGameGUI.BoardGame;
 public abstract class GameDriver {
 	
@@ -9,7 +7,8 @@ public abstract class GameDriver {
 	private int currentPlayer;
 	private Player[] players;
 	private String winner;
-	public GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
+
+	public GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) {
 		players = new Player[]{new Player(player1Name, 0), new Player(player2Name, 1)};
 		boardGUI = new BoardGame(rows, cols, gameName);
 		boardArray = new GamePiece[rows][cols];
