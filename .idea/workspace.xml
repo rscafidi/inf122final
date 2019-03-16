@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db675b72-8142-4632-9d5f-096747e96bbf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GameEnvironment/GameDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEnvironment/GameDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEnvironment/GamePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEnvironment/GamePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boardGameGUI/BoardGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boardGameGUI/BoardGame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,22 +13,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/memGame/MemoryBoardGame.java">
+        <entry file="file://$PROJECT_DIR$/src/boardGameGUI/BoardGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/memGame/DrawMemoryDriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="648">
+              <caret line="199" column="29" lean-forward="true" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -56,11 +43,11 @@
         <option value="$PROJECT_DIR$/src/Launcher/BattleshipDriver.java" />
         <option value="$PROJECT_DIR$/src/Launcher/TestDriver.java" />
         <option value="$PROJECT_DIR$/src/Launcher/LauncherController.java" />
-        <option value="$PROJECT_DIR$/src/boardGameGUI/BoardGame.java" />
         <option value="$PROJECT_DIR$/src/memGame/MemoryDriver.java" />
         <option value="$PROJECT_DIR$/src/GameEnvironment/GameDriver.java" />
         <option value="$PROJECT_DIR$/src/GameEnvironment/GamePiece.java" />
         <option value="$PROJECT_DIR$/src/memGame/MemoryBoardGame.java" />
+        <option value="$PROJECT_DIR$/src/boardGameGUI/BoardGame.java" />
       </list>
     </option>
   </component>
@@ -75,6 +62,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -91,7 +79,13 @@
               <item name="inf122final" type="b2602c69:ProjectViewProjectNode" />
               <item name="inf122final" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Battleship" type="462c0819:PsiDirectoryNode" />
+              <item name="boardGameGUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inf122final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inf122final" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameEnvironment" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="inf122final" type="b2602c69:ProjectViewProjectNode" />
@@ -103,7 +97,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -168,7 +161,7 @@
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22647703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2308534" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -305,13 +298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/boardGameGUI/BoardGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="63" column="49" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/memGame/MemoryDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="796">
@@ -319,20 +305,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/memGame/DrawMemoryDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/memGame/MemoryBoardGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+        <state relative-caret-position="544">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/memGame/DrawMemoryDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/boardGameGUI/BoardGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="199" column="29" lean-forward="true" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
         </state>
       </provider>
     </entry>

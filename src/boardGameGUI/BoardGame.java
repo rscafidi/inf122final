@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import memGame.DrawMemoryDriver;
 
 public class BoardGame {
 	public BorderPane layout;
@@ -132,6 +133,10 @@ public class BoardGame {
 				rowClicked = rowIndex;
 				colClicked = colIndex;
 				boardClicked = true;
+
+				// Add check for if the game is Memory
+				DrawMemoryDriver.handleMove(boardGame);
+				boardClicked = false;
 			}
 	    });
 	    boardGame.add(cell, colIndex, rowIndex);
@@ -148,9 +153,19 @@ public class BoardGame {
 	    				rowClicked = rowIndex;
 	    				colClicked = colIndex;
 	    				boardClicked = true;
+
+	    				// Add check for if the game is Memory
+						DrawMemoryDriver.handleMove(boardGame);
+						boardClicked = false;
 	    			}
 	    	    	
 	    	    });
+
+	    	    // For Memory Game
+				boardGame.add(cell, colIndex, rowIndex);
+				boardGame.setGridLinesVisible(false);
+				boardGame.setGridLinesVisible(true);
+				break;
 	        }
 		}
 	}
