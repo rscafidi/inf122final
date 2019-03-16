@@ -1,7 +1,6 @@
 package Launcher;
 
 import Battleship.DrawBattleshipGameBoard;
-import Battleship.newDrawBattleship;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
