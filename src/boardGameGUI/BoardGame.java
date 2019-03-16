@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import memGame.DrawMemoryDriver;
 
 public class BoardGame {
+	public String gameType;
 	public BorderPane layout;
 	public GridPane boardGame;
 	public String turn;
@@ -38,6 +39,7 @@ public class BoardGame {
 	public Stage primaryStage;
     
 	public BoardGame(Player player1, Player player2, int rows, int cols, String gameName) throws IOException {
+		gameType = gameName;
 		primaryStage = new Stage();
 		boardGame = new GridPane();
 		layout = new BorderPane();
@@ -134,9 +136,11 @@ public class BoardGame {
 				colClicked = colIndex;
 				boardClicked = true;
 
-				// Add check for if the game is Memory
-				DrawMemoryDriver.handleMove(boardGame);
-				boardClicked = false;
+				// For Memory game
+				if (gameType.equals("Memory")) {
+					DrawMemoryDriver.handleMove(boardGame);
+					boardClicked = false;
+				}
 			}
 	    });
 	    boardGame.add(cell, colIndex, rowIndex);
@@ -154,18 +158,22 @@ public class BoardGame {
 	    				colClicked = colIndex;
 	    				boardClicked = true;
 
-	    				// Add check for if the game is Memory
-						DrawMemoryDriver.handleMove(boardGame);
-						boardClicked = false;
+	    				// For Memory game
+						if (gameType.equals("Memory")) {
+							DrawMemoryDriver.handleMove(boardGame);
+							boardClicked = false;
+						}
 	    			}
 	    	    	
 	    	    });
 
 	    	    // For Memory Game
-				boardGame.add(cell, colIndex, rowIndex);
-				boardGame.setGridLinesVisible(false);
-				boardGame.setGridLinesVisible(true);
-				break;
+				if (gameType.equals("Memory")) {
+					boardGame.add(cell, colIndex, rowIndex);
+					boardGame.setGridLinesVisible(false);
+					boardGame.setGridLinesVisible(true);
+					break;
+				}
 	        }
 		}
 	}
