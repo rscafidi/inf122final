@@ -1,5 +1,7 @@
 package Battleship;
 
+import javafx.scene.control.Alert;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -45,8 +47,11 @@ public class BattleshipGameLogic {
             changeTurn(); //change players
             //updateGameBoard();
         } else {
-
-            System.out.println("Invalid move try again.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Move");
+            alert.setHeaderText("The move is not valid.");
+            alert.showAndWait();
+//            System.out.println("Invalid move try again.");
         }
     }
 

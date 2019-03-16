@@ -27,6 +27,7 @@ public class DrawBattleshipGameBoard {
     static Image defaultBoardCell = new Image("/Battleship/ocean-cell.png");
     static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
     static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
+    static Image cellHover = new Image("/Battleship/ocean-cell-hover.png");
     boolean clickMade = false;
     BattleshipGameLogic Logic = new BattleshipGameLogic();
 
@@ -38,6 +39,7 @@ public class DrawBattleshipGameBoard {
             initializeBoard(BOARD_WIDTH, BOARD_HEIGHT, "/Battleship/ocean-cell.png");
             primaryStage.setTitle("Battleship");
             primaryStage.initModality(Modality.WINDOW_MODAL);
+            boardGame.getStylesheets().add("styles.css");
             boardGame.setGridLinesVisible(true);
             primaryStage.setScene(new Scene(boardGame, 600, 600));
             primaryStage.show();
