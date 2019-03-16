@@ -36,5 +36,8 @@ public class TestDriver extends GameDriver {
 
     }
 
-
+    public boolean isGameOver() {
+        // placeholder
+        return true;
+    }
 }

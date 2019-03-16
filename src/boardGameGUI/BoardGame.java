@@ -54,7 +54,7 @@ public class BoardGame {
 				initializeBoard(rows, cols, "/boardGameGUI/ocean-cell.png");
 				break;
 			case "Memory":
-				initializeBoard(rows, cols, "path/to/memory/cell");
+				initializeBoard(rows, cols, "/boardGameGUI/memory-cell.jpg");
 				break;
 			case "TicTacToe":
 				initializeBoard(rows, cols, "path/to/tictactoe/cell");

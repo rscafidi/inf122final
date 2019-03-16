@@ -37,4 +37,9 @@ public class BattleshipDriver extends GameDriver {
     public void makeMove(int x, int y) {
 
     }
+
+    public boolean isGameOver() {
+        // placeholder
+        return true;
+    }
 }
