@@ -6,8 +6,8 @@ public abstract class GameDriver {
 	
 	public BoardGame boardGUI;
 	public int currentPlayer;
-
 	public Player[] players;
+
 	public GamePiece[][] boardArray;
 
 	public String winner;
