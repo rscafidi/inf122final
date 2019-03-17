@@ -22,6 +22,7 @@ public class newDrawBattleship {
     static Image defaultBoardCell = new Image("/Battleship/ocean-cell.png");
     static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
     static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
+    static Image hoverCell = new Image("/Battleship/ocean-cell-hover.png");
     BattleshipGameLogic Logic;
 
     private BorderPane layout;
@@ -133,6 +134,25 @@ public class newDrawBattleship {
                 updatePlayer2Score();
             }
         });
+
+        cell.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        cell.getChildren().set(0, new ImageView(hoverCell));
+                    }
+                });
+
+        cell.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        cell.getChildren().set(0, new ImageView(image));
+                    }
+                });
+
+
+
         boardGame.add(cell, colIndex, rowIndex);
     }
 
@@ -158,6 +178,25 @@ public class newDrawBattleship {
                     }
 
                 });
+
+                if (image.equals(defaultBoardCell)) {
+                    cell.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                            new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent e) {
+                                    cell.getChildren().set(0, new ImageView(hoverCell));
+                                }
+                            });
+
+                    cell.addEventHandler(MouseEvent.MOUSE_EXITED,
+                            new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent e) {
+                                    cell.getChildren().set(0, new ImageView(image));
+                                }
+                            });
+                }
+
                 boardGame.add(cell,colIndex,rowIndex);
                 boardGame.setGridLinesVisible(false);
                 boardGame.setGridLinesVisible(true);
@@ -201,7 +240,7 @@ public class newDrawBattleship {
                 } else if (logic.currentPlayer().playerOceanHits[i][j] == 2) {
                     modifyCell(j, i, missBoardCell);
                 } else {
-                    modifyCell(j, i, DrawBattleshipGameBoard.defaultBoardCell);
+                    modifyCell(j, i, defaultBoardCell);
                 }
             }
         }
