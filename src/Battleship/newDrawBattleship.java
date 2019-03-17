@@ -37,11 +37,6 @@ public class newDrawBattleship {
     private Stage primaryStage;
 
     public newDrawBattleship(String p1, String p2) throws IOException {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         primaryStage = new Stage();
         boardGame = new GridPane();
         layout = new BorderPane();
@@ -69,11 +64,6 @@ public class newDrawBattleship {
     }
 
     public void setupTurn() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         currentTurn = new Text("Current Turn: " + turn);
         currentTurn.setFill(Color.RED);
         currentTurn.setStyle("-fx-font: 24 arial;");
@@ -81,11 +71,6 @@ public class newDrawBattleship {
     }
 
     public void setupPlayer1Panel() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         p1Name = new Text(player1.getUserName());
         p1Name.setFill(Color.RED);
         p1Name.setStyle("-fx-font: 24 arial;");
@@ -98,11 +83,6 @@ public class newDrawBattleship {
     }
 
     public void setupPlayer2Panel() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         p2Name = new Text(player2.getUserName());
         p2Name.setFill(Color.BLUE);
         p2Name.setStyle("-fx-font: 24 arial;");
@@ -115,11 +95,6 @@ public class newDrawBattleship {
     }
 
     public void initializeBoard(int rows, int cols, String imageDirectory) {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         Image defaultBoardCell = new Image(imageDirectory);
         for (int i = 0 ; i < cols ; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
@@ -141,11 +116,6 @@ public class newDrawBattleship {
 
 
     public void addCell(int rowIndex, int colIndex, Image image) {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         Pane cell = new Pane(new ImageView(image));
         cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -186,11 +156,6 @@ public class newDrawBattleship {
     }
 
     public void modifyCell(int colIndex, int rowIndex, Image image) {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         ObservableList<Node> childrens = boardGame.getChildren();
         for (Node node : childrens) {
             if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
@@ -240,11 +205,6 @@ public class newDrawBattleship {
     }
 
     public void switchTurnGUI() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         if (Logic.currPlayer == 1) {
             currentTurn.setText("Current Turn: " + player1.getUserName());
             currentTurn.setFill(Color.BLUE);
@@ -255,29 +215,14 @@ public class newDrawBattleship {
     }
 
     public void updatePlayer1Score() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         score1.setText(Integer.toString(player1.getScore()));
     }
 
     public void updatePlayer2Score() {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         score2.setText(Integer.toString(player2.getScore()));
     }
 
     public void displayWinner(String winner) {
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
         winnerDialog.setTitle("Game Over");
         winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
@@ -287,11 +232,6 @@ public class newDrawBattleship {
     }
 
     void updateGameBoard(JBattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
-<<<<<<< HEAD
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-=======
-        
->>>>>>> parent of 570158d... Removed old classes that are no longer needed.
         for (int i = 0; i < logic.currentPlayer().playerOceanHits.length; i++ ) {
             for (int j = 0; j < logic.currentPlayer().playerOceanHits[i].length; j++ ) {
                 if (logic.currentPlayer().playerOceanHits[i][j] == 1) {
