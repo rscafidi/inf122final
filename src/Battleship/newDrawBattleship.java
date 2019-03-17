@@ -37,7 +37,7 @@ public class newDrawBattleship {
     private Stage primaryStage;
 
     public newDrawBattleship(String p1, String p2) throws IOException {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         primaryStage = new Stage();
         boardGame = new GridPane();
         layout = new BorderPane();
@@ -65,7 +65,7 @@ public class newDrawBattleship {
     }
 
     public void setupTurn() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         currentTurn = new Text("Current Turn: " + turn);
         currentTurn.setFill(Color.RED);
         currentTurn.setStyle("-fx-font: 24 arial;");
@@ -73,7 +73,7 @@ public class newDrawBattleship {
     }
 
     public void setupPlayer1Panel() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         p1Name = new Text(player1.getUserName());
         p1Name.setFill(Color.RED);
         p1Name.setStyle("-fx-font: 24 arial;");
@@ -86,7 +86,7 @@ public class newDrawBattleship {
     }
 
     public void setupPlayer2Panel() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         p2Name = new Text(player2.getUserName());
         p2Name.setFill(Color.BLUE);
         p2Name.setStyle("-fx-font: 24 arial;");
@@ -99,7 +99,7 @@ public class newDrawBattleship {
     }
 
     public void initializeBoard(int rows, int cols, String imageDirectory) {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         Image defaultBoardCell = new Image(imageDirectory);
         for (int i = 0 ; i < cols ; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
@@ -121,7 +121,7 @@ public class newDrawBattleship {
 
 
     public void addCell(int rowIndex, int colIndex, Image image) {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         Pane cell = new Pane(new ImageView(image));
         cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -162,7 +162,7 @@ public class newDrawBattleship {
     }
 
     public void modifyCell(int colIndex, int rowIndex, Image image) {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         ObservableList<Node> childrens = boardGame.getChildren();
         for (Node node : childrens) {
             if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
@@ -212,7 +212,7 @@ public class newDrawBattleship {
     }
 
     public void switchTurnGUI() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         if (Logic.currPlayer == 1) {
             currentTurn.setText("Current Turn: " + player1.getUserName());
             currentTurn.setFill(Color.BLUE);
@@ -223,17 +223,17 @@ public class newDrawBattleship {
     }
 
     public void updatePlayer1Score() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         score1.setText(Integer.toString(player1.getScore()));
     }
 
     public void updatePlayer2Score() {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         score2.setText(Integer.toString(player2.getScore()));
     }
 
     public void displayWinner(String winner) {
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
         winnerDialog.setTitle("Game Over");
         winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
@@ -243,7 +243,7 @@ public class newDrawBattleship {
     }
 
     void updateGameBoard(JBattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
-        
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         for (int i = 0; i < logic.currentPlayer().playerOceanHits.length; i++ ) {
             for (int j = 0; j < logic.currentPlayer().playerOceanHits[i].length; j++ ) {
                 if (logic.currentPlayer().playerOceanHits[i][j] == 1) {

@@ -8,9 +8,7 @@ public class BattleshipDriver extends GameDriver {
 
     public BattleshipDriver(String p1, String p2, int rows, int cols, String game) throws IOException {
         super(p1, p2, rows, cols, game);
-        BattleshipPlayer player1 = new BattleshipPlayer(p1, 0);
-        BattleshipPlayer player2 = new BattleshipPlayer(p2, 1);
-        boardGUI = new BattleshipGameBoard(player1, player2, rows, cols, game);
+        BattleshipGameBoard board = new BattleshipGameBoard(p1, p2, rows, cols, game);
     }
 
     @Override
