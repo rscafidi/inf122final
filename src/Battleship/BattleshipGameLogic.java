@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class BattleshipGameLogic {
     int currPlayer = 1;
-    BattleshipPlayer player1 = new BattleshipPlayer("p1");
-    BattleshipPlayer player2 = new BattleshipPlayer("p2");
+    JBattleshipPlayer player1 = new JBattleshipPlayer("p1");
+    JBattleshipPlayer player2 = new JBattleshipPlayer("p2");
     //DrawBattleshipGameBoard board = new DrawBattleshipGameBoard();
     //DrawBattleshipGameBoard board;
     ArrayList<Point> moves = new ArrayList<Point>();
@@ -69,7 +69,7 @@ public class BattleshipGameLogic {
 //        }
 //    }
 
-    BattleshipPlayer currentPlayer() {
+    JBattleshipPlayer currentPlayer() {
         if (currPlayer == 1) {
             return player1;
         } else if (currPlayer == 2) {

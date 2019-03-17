@@ -1,11 +1,10 @@
 package GameEnvironment;
 
-import java.util.ArrayList;
-
 public class Player {
 	private String userName;
 	private int playerTurn;
 	private int playerScore;
+
 	public Player(String userName, int turn) {
 		this.userName = userName;
 		playerTurn = turn;
@@ -22,5 +21,13 @@ public class Player {
 	
 	public int getScore() {
 		return playerScore;
+	}
+
+	public int getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
 	}
 }
