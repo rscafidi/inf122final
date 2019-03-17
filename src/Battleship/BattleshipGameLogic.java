@@ -14,15 +14,15 @@ public class BattleshipGameLogic {
     ArrayList<Point> moves = new ArrayList<Point>();
     BattleshipPlayer winner = null;
 
-    public BattleshipGameLogic(String p1, String p2) {
-        player1 = new BattleshipPlayer(p1, 0);
-        player2 = new BattleshipPlayer(p2, 0);
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+    public BattleshipGameLogic(BattleshipPlayer p1, BattleshipPlayer p2) {
+        this.player1 = p1;
+        this.player2 = p2;
+        
         generateValidMovesList(); //generating valid moves for first player [starting player]
     }
 
     void checkForWinner() { //currently just to see if it works or not
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        
         if (player1.getScore() >= 17) { //17 because if every single ship is hit it totals to 17
             System.out.println("Player 1 wins");
             this.winner = player1;
@@ -33,7 +33,7 @@ public class BattleshipGameLogic {
     }
 
     void makeMove(int i, int j) { //i = row; j = col
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        
         checkForWinner();
         if (isValidMove(i, j)) {
             if (currPlayer == 1) {
@@ -79,7 +79,7 @@ public class BattleshipGameLogic {
 
 
     BattleshipPlayer currentPlayer() {
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        
         if (currPlayer == 1) {
             return player1;
         } else if (currPlayer == 2) {
@@ -89,7 +89,7 @@ public class BattleshipGameLogic {
     }
 
     void generateValidMovesList() {
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        
         moves.clear();
         for (int i = 0; i < currentPlayer().playerOceanHits.length; ++i) {
             for (int j = 0; j < currentPlayer().playerOceanHits[i].length; ++j) {
@@ -101,7 +101,7 @@ public class BattleshipGameLogic {
     }
 
     boolean isValidMove(int i, int j) {
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        
         generateValidMovesList();
         Point move = new Point(i, j);
         return moves.contains(move);

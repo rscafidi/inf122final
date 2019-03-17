@@ -111,7 +111,7 @@ public class LauncherController {
 		//to the game board.
 //		BattleshipDriver battleshipDriver = new BattleshipDriver(player1, player2, 10, 10, "Battleship");
 //		new newDrawBattleship(getPlayer1Name(),getPlayer2Name());
-		BattleshipDriver battleshipDriver = new BattleshipDriver(player1, player2, 10, 10, "Battleship");
+		BattleshipDriver battleshipDriver = new BattleshipDriver(getPlayer1Name(), getPlayer2Name(), 10, 10, "Battleship");
 	}
 
 }

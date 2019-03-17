@@ -68,6 +68,7 @@ public class BoardGame {
 	}
 	
 	public void setupTurn() {
+		
 		currentTurn = new Text("Current Turn: " + turn);
 		currentTurn.setFill(Color.RED);
 		currentTurn.setStyle("-fx-font: 24 arial;");
@@ -75,6 +76,7 @@ public class BoardGame {
 	}
 		
 	public void setupPlayer1Panel() {
+		
 		p1Name = new Text(player1.getUserName());
 		p1Name.setFill(Color.RED);
 		p1Name.setStyle("-fx-font: 24 arial;");
@@ -87,6 +89,7 @@ public class BoardGame {
 	}
 	
 	public void setupPlayer2Panel() {
+		
 		p2Name = new Text(player2.getUserName());
 		p2Name.setFill(Color.BLUE);
 		p2Name.setStyle("-fx-font: 24 arial;");
@@ -99,6 +102,7 @@ public class BoardGame {
 	}
 
 	public void initializeBoard(int rows, int cols, String imageDirectory) {
+		
 		Image defaultBoardCell = new Image(imageDirectory);
 	    for (int i = 0 ; i < cols ; i++) {
 	    	ColumnConstraints colConstraints = new ColumnConstraints();
@@ -120,6 +124,7 @@ public class BoardGame {
 	
 
 	public void addCell(int rowIndex, int colIndex, Image image) {
+		
 	    Pane cell = new Pane(new ImageView(image));
 	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -133,6 +138,7 @@ public class BoardGame {
 	}
 
 	public void modifyCell(int colIndex, int rowIndex, Image image) {
+		
 		ObservableList<Node> childrens = boardGame.getChildren();
 		for (Node node : childrens) {
 	        if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
@@ -151,6 +157,7 @@ public class BoardGame {
 	}
 	
 	public void switchTurnGUI() {
+		
 		if (turn.equals(player1.getUserName())) {
 			turn = player2.getUserName();
 			currentTurn.setText("Current Turn: " + turn);
@@ -164,14 +171,17 @@ public class BoardGame {
 	}
 	
 	public void updatePlayer1Score() {
+		
 		score1.setText(Integer.toString(player1.getScore()));
 	}
 	
 	public void updatePlayer2Score() {
+		
 		score2.setText(Integer.toString(player2.getScore()));
 	}
 	
 	public void displayWinner(String winner) {
+		
 		Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
 		winnerDialog.setTitle("Game Over");
 		winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
