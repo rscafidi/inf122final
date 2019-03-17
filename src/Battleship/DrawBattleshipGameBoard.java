@@ -28,7 +28,7 @@ public class DrawBattleshipGameBoard {
     static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
     static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
     boolean clickMade = false;
-    BattleshipGameLogic Logic = new BattleshipGameLogic("p1","p2");
+    JBattleshipGameLogic Logic = new JBattleshipGameLogic("p1","p2");
 
 
     public DrawBattleshipGameBoard() {
@@ -75,7 +75,7 @@ public class DrawBattleshipGameBoard {
                 colClicked = colIndex;
                 clickMade = true;
                 //System.out.println(rowClicked + " _ " + colClicked);
-                //BattleshipGameLogic.moveAttempted(colClicked, rowClicked);
+                //JBattleshipGameLogic.moveAttempted(colClicked, rowClicked);
                 Logic.makeMove(rowClicked, colClicked);
                 updateGameBoard(Logic);
             }
@@ -95,7 +95,7 @@ public class DrawBattleshipGameBoard {
                         rowClicked = rowIndex;
                         colClicked = colIndex;
                         clickMade = true;
-                        //BattleshipGameLogic.moveAttempted(colClicked, rowClicked);
+                        //JBattleshipGameLogic.moveAttempted(colClicked, rowClicked);
                         Logic.makeMove(rowClicked, colClicked);
                         updateGameBoard(Logic);
                     }
@@ -111,7 +111,7 @@ public class DrawBattleshipGameBoard {
 
 
 
-    void updateGameBoard(BattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
+    void updateGameBoard(JBattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
         for (int i = 0; i < logic.currentPlayer().playerOceanHits.length; i++ ) {
             for (int j = 0; j < logic.currentPlayer().playerOceanHits[i].length; j++ ) {
                 if (logic.currentPlayer().playerOceanHits[i][j] == 1) {

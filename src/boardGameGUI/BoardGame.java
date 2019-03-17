@@ -1,6 +1,5 @@
 package boardGameGUI;
 
-import java.io.IOException;
 import GameEnvironment.Player;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,30 +10,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class BoardGame {
-	private BorderPane layout;
-    private GridPane boardGame;
-    private String turn;
-    private Player player1, player2;
-    private VBox infoPanel, nameScore1, nameScore2;
-    private HBox nameScoreHolder;
-    private Text currentTurn, p1Name, p2Name, score1, score2;
-	private int rowClicked = 0, colClicked = 0;
+	public BorderPane layout;
+	public GridPane boardGame;
+	public String turn;
+	public Player player1, player2;
+	public VBox infoPanel, nameScore1, nameScore2;
+	public HBox nameScoreHolder;
+	public Text currentTurn, p1Name, p2Name, score1, score2;
+	public int rowClicked = 0, colClicked = 0;
     //Make sure to reset the boardClicked to false after you made the move
     public boolean boardClicked = false;
-    private Stage primaryStage;
+	public Stage primaryStage;
     
 	public BoardGame(Player player1, Player player2, int rows, int cols, String gameName) throws IOException {
 		primaryStage = new Stage();

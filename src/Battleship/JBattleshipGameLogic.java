@@ -5,28 +5,29 @@ import javafx.scene.control.Alert;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BattleshipGameLogic {
+public class JBattleshipGameLogic {
     int currPlayer = 1;
-    BattleshipPlayer player1;
-    BattleshipPlayer player2;
+    JBattleshipPlayer player1;
+    JBattleshipPlayer player2;
     //DrawBattleshipGameBoard board = new DrawBattleshipGameBoard();
     //DrawBattleshipGameBoard board;
     ArrayList<Point> moves = new ArrayList<Point>();
-    BattleshipPlayer winner = null;
+    JBattleshipPlayer winner = null;
 
-    public BattleshipGameLogic(String p1, String p2) {
-        player1 = new BattleshipPlayer(p1, 0);
-        player2 = new BattleshipPlayer(p2, 0);
+
+    public JBattleshipGameLogic(String p1, String p2) {
         System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        player1 = new JBattleshipPlayer(p1);
+        player2 = new JBattleshipPlayer(p2);
         generateValidMovesList(); //generating valid moves for first player [starting player]
     }
 
-    void checkForWinner() { //currently just to see if it works or not
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
-        if (player1.getScore() >= 17) { //17 because if every single ship is hit it totals to 17
+    void checkForWinner() {
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());//currently just to see if it works or not
+        if (player1.playerScore >= 17) { //17 because if every single ship is hit it totals to 17
             System.out.println("Player 1 wins");
             this.winner = player1;
-        } else if (player2.getScore() >= 17) {
+        } else if (player2.playerScore >= 17) {
             System.out.println("Player 2 wins");
             this.winner = player2;
         }
@@ -39,14 +40,14 @@ public class BattleshipGameLogic {
             if (currPlayer == 1) {
                 if (player2.playerShips[i][j] != 0) { //if second player has a ship at that position add hit to current playerOceanHits and increment their score by 1
                     player1.playerOceanHits[i][j] = 1; //hit
-                    player1.setPlayerScore(player1.getScore() + 1);
+                    player1.playerScore += 1;
                 } else {
                     player1.playerOceanHits[i][j] = 2; //miss
                 }
             } else {
                 if (player1.playerShips[i][j] != 0) { //if first player has a ship at that position add hit to current playerOceanHits and increment their score by 1
                     player2.playerOceanHits[i][j] = 1; //hit
-                    player2.setPlayerScore(player2.getScore() + 1);
+                    player2.playerScore += 1;
                 } else {
                     player2.playerOceanHits[i][j] = 2; //miss
                 }
@@ -77,8 +78,7 @@ public class BattleshipGameLogic {
 //        }
 //    }
 
-
-    BattleshipPlayer currentPlayer() {
+    JBattleshipPlayer currentPlayer() {
         System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         if (currPlayer == 1) {
             return player1;
@@ -114,6 +114,7 @@ public class BattleshipGameLogic {
     }
 
     void changeTurn() {
+        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
         if (currPlayer == 1) {
             currPlayer = 2;
         } else {
