@@ -1,7 +1,10 @@
 package Launcher;
 
+import java.io.IOException;
+
 import Battleship.DrawBattleshipGameBoard;
 import memGame.DrawMemoryDriver;
+import othelloGame.OthelloDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -91,10 +94,11 @@ public class LauncherController {
 	}
 	
 	@FXML
-	protected void startCheckers(MouseEvent event) {
+	protected void startOthello(MouseEvent event) throws IOException {
 		//Dummy code
-		System.out.println("Starting Checkers...");
+		System.out.println("Starting Othello...");
 		//Run game here
+		new OthelloDriver(p1Name.getText(), p2Name.getText(), 8, 8, "Othello").runGame();
 	}
 	
 	@FXML

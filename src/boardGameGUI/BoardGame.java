@@ -62,6 +62,9 @@ public class BoardGame {
 			case "TicTacToe":
 				initializeBoard(rows, cols, "path/to/tictactoe/cell");
 				break;
+			case "Othello":
+				initializeBoard(rows, cols, "/boardGameGUI/white-square-cell.jpg");
+				break;
 		}
 		nameScoreHolder = new HBox(nameScore1, nameScore2);
 		nameScoreHolder.setAlignment(Pos.CENTER);
@@ -128,7 +131,11 @@ public class BoardGame {
 	
 
 	public void addCell(int rowIndex, int colIndex, Image image) {
-	    Pane cell = new Pane(new ImageView(image));
+	    Pane cell = new Pane();
+	    ImageView img = new ImageView(image);
+	    img.fitWidthProperty().bind(cell.widthProperty()); 
+	    img.fitHeightProperty().bind(cell.heightProperty());
+	    cell.getChildren().add(img);
 	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -147,33 +154,33 @@ public class BoardGame {
 	}
 
 	public void modifyCell(int colIndex, int rowIndex, Image image) {
-		ObservableList<Node> childrens = boardGame.getChildren();
-		for (Node node : childrens) {
+		for (Node node : boardGame.getChildren()) {
 	        if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
-	        	Pane cell = new Pane(new ImageView(image));
+	        	boardGame.getChildren().remove(node);
+	    	    Pane cell = new Pane();
+	    	    ImageView img = new ImageView(image);
+	    	    img.fitWidthProperty().bind(cell.widthProperty()); 
+	    	    img.fitHeightProperty().bind(cell.heightProperty());
+	    	    cell.getChildren().add(img);
 	    	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	    			@Override
 	    			public void handle(MouseEvent arg0) {
 	    				rowClicked = rowIndex;
 	    				colClicked = colIndex;
 	    				boardClicked = true;
-
 	    				// For Memory game
 						if (gameType.equals("Memory")) {
 							DrawMemoryDriver.handleMove(boardGame);
 							boardClicked = false;
+						} else {
+							
 						}
 	    			}
-	    	    	
 	    	    });
-
-	    	    // For Memory Game
-				if (gameType.equals("Memory")) {
-					boardGame.add(cell, colIndex, rowIndex);
-					boardGame.setGridLinesVisible(false);
-					boardGame.setGridLinesVisible(true);
-					break;
-				}
+				boardGame.add(cell, colIndex, rowIndex);
+				boardGame.setGridLinesVisible(false);
+				boardGame.setGridLinesVisible(true);
+				break;
 	        }
 		}
 	}
@@ -202,7 +209,11 @@ public class BoardGame {
 	public void displayWinner(String winner) {
 		Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
 		winnerDialog.setTitle("Game Over");
-		winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
+		if (winner.equals("TIE")) {
+			winnerDialog.setHeaderText("It's a TIE!");
+		} else {
+			winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
+		}
 		winnerDialog.setContentText("The window will exit after...");
 		winnerDialog.showAndWait();
 		primaryStage.close();

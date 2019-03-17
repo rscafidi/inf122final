@@ -11,10 +11,9 @@ public abstract class GamePiece {
 	//Initialize an image like this 
 	//Image image = new Image("path/to/image/here");
 	public GamePiece(String pieceName, Image image) {
-		this.pieceName = pieceName;
+		this.setPieceName(pieceName);
 		this.image = image;
 	}
-
 
 	public String getName() {
 		return this.pieceName;
@@ -22,6 +21,14 @@ public abstract class GamePiece {
 
 	public Image getImage() {
 		return this.image;
+	}
+
+	public void setPieceName(String pieceName) {
+		this.pieceName = pieceName;
+	}
+	
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 }

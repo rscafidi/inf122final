@@ -14,8 +14,6 @@ public abstract class GameDriver {
 
 
 	public GameDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
-		players = new Player[]{new Player(player1Name, 0), new Player(player2Name, 1)};
-		boardGUI = new BoardGame(players[0], players[1],rows, cols, gameName);
 		boardArray = new GamePiece[rows][cols];
 	}
 

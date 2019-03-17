@@ -1,6 +1,7 @@
 package memGame;
 
 import GameEnvironment.*;
+import boardGameGUI.BoardGame;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
@@ -17,7 +18,8 @@ public class MemoryDriver extends GameDriver{
 
     public MemoryDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
         super(player1Name, player2Name, rows, cols, gameName);
-        //this.memoryPlayers = new MemoryPlayer[]{new MemoryPlayer(player1Name, 0), new MemoryPlayer(player2Name, 1)};
+        this.players = new MemoryPlayer[]{new MemoryPlayer(player1Name, 0), new MemoryPlayer(player2Name, 1)};
+        boardGUI = new BoardGame(players[0], players[1],rows, cols, gameName);
         this.currentPlayer = 0;
     }
     // Methods
@@ -65,11 +67,7 @@ public class MemoryDriver extends GameDriver{
                 memoryBoardGame.updateCards(otherCard.getRow(),otherCard.getCol());
                 memoryBoardGame.numMatches--;
                 System.out.println(otherCard.getName());
-
-                int score = getPlayer().getScore();
-                updateScore(currentPlayer,++score);
-                System.out.println(getPlayer().getScore());
-                //updateScore();
+                getPlayer().setPlayerScore(getPlayer().getScore() + 1);
             }
             else {
                 memoryBoardGame.flipCards(row,col);
@@ -94,12 +92,6 @@ public class MemoryDriver extends GameDriver{
         else {
             return "TIE";
         }
-    }
-
-    public void updateScore(int playerIndex, int value) {
-        Player current = players[currentPlayer];
-        int score = current.getScore();
-        current.setPlayerScore(++score);
     }
 
     public boolean isGameOver() {
@@ -149,45 +141,6 @@ public class MemoryDriver extends GameDriver{
             }
         }
     }
-
-//    public void runGame() {
-//        initializeBoardArray();
-//        int index = 0;
-// //       while (!isGameOver()) {
-// //           System.out.println(index);
-//            if (boardGUI.boardClicked) {
-//                Card clickedCard = memoryBoardGame.grid[boardGUI.rowClicked][boardGUI.colClicked];
-//                if (isLegalMove(boardGUI.rowClicked, boardGUI.colClicked)) {
-//                    boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,clickedCard.getImage());
-//                    if (firstMove()) {
-//                        makeMove(boardGUI.rowClicked, boardGUI.colClicked);
-////                        drawMemoryDriver.flipUp(clickedCard.getImageView(), () -> {
-////                        });
-//                    } else {
-//                        Card otherCard = getPlayer().getPlayerCard();
-//                        makeMove(boardGUI.rowClicked, boardGUI.colClicked);
-//                        if (clickedCard.getStatus()) {
-//                            boardGUI.modifyCell(boardGUI.colClicked,boardGUI.rowClicked,new Image("/boardGameGUI/memory-cell.jpg"));
-//                            boardGUI.modifyCell(otherCard.getCol(),otherCard.getCol(),new Image("/boardGameGUI/memory-cell.jpg"));
-//                        }
-////                        drawMemoryDriver.flipUp(clickedCard.getImageView(), () -> {
-////                            if (clickedCard.getStatus()) {
-////                                drawMemoryDriver.flipDown(clickedCard.getImageView());
-////                                drawMemoryDriver.flipDown(otherCard.getImageView());
-////                            }
-////                        });
-//                    }
-//                }
-//                boardGUI.boardClicked = false;
-//                if (isGameOver()) {
-//                    System.out.println(getWinner());
-//                }
-//            }
-//  //          System.out.println(++index);
-//   //     }
-//   //     System.out.println(getWinner());   //should put this on the menu somehow but not sure if there's a menu yet :(
-//  //      System.out.println("Ends");
-//    }
 
 
 }
