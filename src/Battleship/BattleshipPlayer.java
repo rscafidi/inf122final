@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class BattleshipPlayer extends Player {
 
-    int[][] playerShips = new int[DrawBattleshipGameBoard.BOARD_WIDTH][DrawBattleshipGameBoard.BOARD_HEIGHT];
-    int[][] playerOceanHits = new int[DrawBattleshipGameBoard.BOARD_WIDTH][DrawBattleshipGameBoard.BOARD_HEIGHT];
+    int[][] playerShips = new int[BattleshipGameBoard.BOARD_WIDTH][BattleshipGameBoard.BOARD_HEIGHT];
+    int[][] playerOceanHits = new int[BattleshipGameBoard.BOARD_WIDTH][BattleshipGameBoard.BOARD_HEIGHT];
 
 
     public BattleshipPlayer(String userName, int turn) {
@@ -35,7 +35,7 @@ public class BattleshipPlayer extends Player {
 
         //placing Carrier
         for (int i = 0; i <  5; i++ ) {
-            playerShips[colLoc][i] = DrawBattleshipGameBoard.CARRIER;
+            playerShips[colLoc][i] = BattleshipGameBoard.CARRIER;
         }
 
         //placing Battleship
@@ -45,7 +45,7 @@ public class BattleshipPlayer extends Player {
                 colLoc = rand.nextInt(10);
                 continue;
             }
-            playerShips[colLoc][i] = DrawBattleshipGameBoard.BATTLESHIP;
+            playerShips[colLoc][i] = BattleshipGameBoard.BATTLESHIP;
             i++;
         }
 
@@ -56,7 +56,7 @@ public class BattleshipPlayer extends Player {
                 colLoc = rand.nextInt(10);
                 continue;
             }
-            playerShips[colLoc][i] = DrawBattleshipGameBoard.CRUISER;
+            playerShips[colLoc][i] = BattleshipGameBoard.CRUISER;
             i++;
         }
 
@@ -66,7 +66,7 @@ public class BattleshipPlayer extends Player {
                 colLoc = rand.nextInt(10);
                 continue;
             }
-            playerShips[colLoc][i] = DrawBattleshipGameBoard.SUBMARINE;
+            playerShips[colLoc][i] = BattleshipGameBoard.SUBMARINE;
             i++;
         }
 
@@ -76,15 +76,15 @@ public class BattleshipPlayer extends Player {
                 colLoc = rand.nextInt(10);
                 continue;
             }
-            playerShips[colLoc][i] = DrawBattleshipGameBoard.DESTROYER;
+            playerShips[colLoc][i] = BattleshipGameBoard.DESTROYER;
             i++;
         }
     }
 
     void printPlayerShips() {
         System.out.print("playerShips: \n");
-        for (int i = 0; i < DrawBattleshipGameBoard.BOARD_WIDTH; i++) {
-            for (int j = 0; j < DrawBattleshipGameBoard.BOARD_HEIGHT; j++) {
+        for (int i = 0; i < BattleshipGameBoard.BOARD_WIDTH; i++) {
+            for (int j = 0; j < BattleshipGameBoard.BOARD_HEIGHT; j++) {
                 System.out.print(" " + playerShips[i][j] + " ");
             }
             System.out.println();
@@ -93,9 +93,9 @@ public class BattleshipPlayer extends Player {
 
     void printPlayerOceanHits() {
         System.out.print("playerOceanHits: \n");
-        for (int i = 0; i < DrawBattleshipGameBoard.BOARD_HEIGHT; i++) {
+        for (int i = 0; i < BattleshipGameBoard.BOARD_HEIGHT; i++) {
             //System.out.print("ROWS: ");
-            for (int j = 0; j < DrawBattleshipGameBoard.BOARD_WIDTH; j++) {
+            for (int j = 0; j < BattleshipGameBoard.BOARD_WIDTH; j++) {
                 //System.out.print(" ["+i+"]["+j+"]" + playerOceanHits[i][j] + " ");
                 System.out.print(" " + playerOceanHits[i][j] + " ");
             }

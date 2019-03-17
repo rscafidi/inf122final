@@ -9,8 +9,6 @@ public class BattleshipGameLogic {
     int currPlayer = 1;
     BattleshipPlayer player1;
     BattleshipPlayer player2;
-    //DrawBattleshipGameBoard board = new DrawBattleshipGameBoard();
-    //DrawBattleshipGameBoard board;
     ArrayList<Point> moves = new ArrayList<Point>();
     BattleshipPlayer winner = null;
 
@@ -59,23 +57,8 @@ public class BattleshipGameLogic {
             alert.setHeaderText(null);
             alert.setContentText("Invalid move");
             alert.showAndWait();
-//            System.out.println("Invalid move try again.");
         }
     }
-
-//    void updateGameBoard(JBattleshipGameLogic logic) { //updates so GUI shows current player's ocean of hits
-//        for (int i = 0; i < logic.currentPlayer().playerOceanHits.length; i++ ) {
-//            for (int j = 0; j < logic.currentPlayer().playerOceanHits[i].length; j++ ) {
-//                if (logic.currentPlayer().playerOceanHits[i][j] == 1) {
-//                    board.modifyCell(i, j, logic.hitBoardCell);
-//                } else if (logic.currentPlayer().playerOceanHits[i][j] == 2) {
-//                    board.modifyCell(i, j, logic.missBoardCell);
-//                } else {
-//                    board.modifyCell(i,j, DrawBattleshipGameBoard.defaultBoardCell);
-//                }
-//            }
-//        }
-//    }
 
 
     BattleshipPlayer currentPlayer() {
@@ -105,12 +88,6 @@ public class BattleshipGameLogic {
         generateValidMovesList();
         Point move = new Point(i, j);
         return moves.contains(move);
-//        for (Point move: moves) {
-//            if (move.x == i && move.y == j) {
-//                return true;
-//            }
-//        }
-//        return false;
     }
 
     void changeTurn() {

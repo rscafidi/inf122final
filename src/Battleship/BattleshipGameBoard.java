@@ -18,6 +18,14 @@ import java.io.IOException;
 
 public class BattleshipGameBoard extends BoardGame  {
 
+    static final int BOARD_WIDTH = 10;
+    static final int BOARD_HEIGHT = 10;
+    static final int CARRIER = 5;
+    static final int BATTLESHIP = 4;
+    static final int CRUISER = 3;
+    static final int SUBMARINE = 2;
+    static final int DESTROYER = 1;
+
     static Image defaultBoardCell = new Image("/Battleship/ocean-cell.png");
     static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
     static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
