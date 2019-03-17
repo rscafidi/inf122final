@@ -28,7 +28,7 @@ public class DrawBattleshipGameBoard {
     static Image hitBoardCell = new Image("/Battleship/ocean-hit-cell.png");
     static Image missBoardCell = new Image("/Battleship/ocean-miss-cell.png");
     boolean clickMade = false;
-    BattleshipGameLogic Logic = new BattleshipGameLogic("p1","p2");
+    JBattleshipGameLogic Logic = new JBattleshipGameLogic("p1","p2");
 
 
     public DrawBattleshipGameBoard() {
