@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
+import memGame.DrawMemoryDriver;
+import othelloGame.DrawOthelloDriver;
+
+import java.io.IOException;
 
 public class LauncherController {
     @FXML

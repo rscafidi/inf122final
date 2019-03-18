@@ -155,3 +155,7 @@ src/META-INF/MANIFEST.MF
 .idea/artifacts/game.xml
 src/META-INF/MANIFEST.MF
 .idea/artifacts/game.xml
+.idea/vcs.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml

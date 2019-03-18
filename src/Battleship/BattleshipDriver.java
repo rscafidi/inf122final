@@ -14,6 +14,11 @@ public class BattleshipDriver extends GameDriver {
     }
 
     @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
     public void initializeBoardArray() {
         System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
     }

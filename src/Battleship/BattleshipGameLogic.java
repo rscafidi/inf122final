@@ -1,5 +1,7 @@
 package Battleship;
 
+import javafx.scene.control.Alert;
+
 import java.awt.*;
 import java.util.ArrayList;
 
