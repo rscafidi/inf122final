@@ -36,6 +36,5 @@ public class BattleshipDriver extends GameDriver {
 
     @Override
     public void makeMove(int x, int y) {
-
     }
 }

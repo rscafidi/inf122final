@@ -31,7 +31,6 @@ public class BattleshipGameLogic {
     }
 
     void makeMove(int i, int j) { //i = row; j = col
-        
         checkForWinner();
         if (isValidMove(i, j)) {
             if (currPlayer == 1) {
