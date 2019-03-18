@@ -1,6 +1,5 @@
 package boardGameGUI;
 
-import java.io.IOException;
 import GameEnvironment.Player;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,31 +10,27 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class BoardGame {
-	private BorderPane layout;
-    private GridPane boardGame;
-    private String turn;
-    private Player player1, player2;
-    private VBox infoPanel, nameScore1, nameScore2;
-    private HBox nameScoreHolder;
-    private Text currentTurn, p1Name, p2Name, score1, score2;
-	private int rowClicked = 0, colClicked = 0;
+	public BorderPane layout;
+	public GridPane boardGame;
+	public String turn;
+	public Player player1, player2;
+	public VBox infoPanel, nameScore1, nameScore2;
+	public HBox nameScoreHolder;
+	public Text currentTurn, p1Name, p2Name, score1, score2;
+	public int rowClicked = 0, colClicked = 0;
     //Make sure to reset the boardClicked to false after you made the move
     public boolean boardClicked = false;
-    private Stage primaryStage;
-    
+	public Stage primaryStage;
+
 	public BoardGame(Player player1, Player player2, int rows, int cols, String gameName) throws IOException {
 		primaryStage = new Stage();
 		boardGame = new GridPane();
@@ -71,15 +66,17 @@ public class BoardGame {
 		primaryStage.setScene(new Scene(layout, 600, 600));
 		primaryStage.show();
 	}
-	
+
 	public void setupTurn() {
+
 		currentTurn = new Text("Current Turn: " + turn);
 		currentTurn.setFill(Color.RED);
 		currentTurn.setStyle("-fx-font: 24 arial;");
 		infoPanel.getChildren().add(currentTurn);
 	}
-		
+
 	public void setupPlayer1Panel() {
+
 		p1Name = new Text(player1.getUserName());
 		p1Name.setFill(Color.RED);
 		p1Name.setStyle("-fx-font: 24 arial;");
@@ -90,8 +87,9 @@ public class BoardGame {
 		nameScore1.setAlignment(Pos.CENTER);
 		nameScore1.setSpacing(5);
 	}
-	
+
 	public void setupPlayer2Panel() {
+
 		p2Name = new Text(player2.getUserName());
 		p2Name.setFill(Color.BLUE);
 		p2Name.setStyle("-fx-font: 24 arial;");
@@ -104,6 +102,7 @@ public class BoardGame {
 	}
 
 	public void initializeBoard(int rows, int cols, String imageDirectory) {
+
 		Image defaultBoardCell = new Image(imageDirectory);
 	    for (int i = 0 ; i < cols ; i++) {
 	    	ColumnConstraints colConstraints = new ColumnConstraints();
@@ -122,9 +121,10 @@ public class BoardGame {
 	    }
 	    layout.setCenter(boardGame);
 	}
-	
+
 
 	public void addCell(int rowIndex, int colIndex, Image image) {
+
 	    Pane cell = new Pane(new ImageView(image));
 	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -138,6 +138,7 @@ public class BoardGame {
 	}
 
 	public void modifyCell(int colIndex, int rowIndex, Image image) {
+
 		ObservableList<Node> childrens = boardGame.getChildren();
 		for (Node node : childrens) {
 	        if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
@@ -149,13 +150,14 @@ public class BoardGame {
 	    				colClicked = colIndex;
 	    				boardClicked = true;
 	    			}
-	    	    	
+
 	    	    });
 	        }
 		}
 	}
-	
+
 	public void switchTurnGUI() {
+
 		if (turn.equals(player1.getUserName())) {
 			turn = player2.getUserName();
 			currentTurn.setText("Current Turn: " + turn);
@@ -167,16 +169,19 @@ public class BoardGame {
 			currentTurn.setFill(Color.RED);
 		}
 	}
-	
+
 	public void updatePlayer1Score() {
+
 		score1.setText(Integer.toString(player1.getScore()));
 	}
-	
+
 	public void updatePlayer2Score() {
+
 		score2.setText(Integer.toString(player2.getScore()));
 	}
-	
+
 	public void displayWinner(String winner) {
+
 		Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
 		winnerDialog.setTitle("Game Over");
 		winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
@@ -185,6 +190,3 @@ public class BoardGame {
 		primaryStage.close();
 	}
 }
-
-
-
