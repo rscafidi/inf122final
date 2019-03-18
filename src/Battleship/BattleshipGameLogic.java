@@ -15,12 +15,12 @@ public class BattleshipGameLogic {
     public BattleshipGameLogic(BattleshipPlayer p1, BattleshipPlayer p2) {
         this.player1 = p1;
         this.player2 = p2;
-        
+
         generateValidMovesList(); //generating valid moves for first player [starting player]
     }
 
     void checkForWinner() { //currently just to see if it works or not
-        
+
         if (player1.getScore() >= 17) { //17 because if every single ship is hit it totals to 17
             System.out.println("Player 1 wins");
             this.winner = player1;
@@ -61,7 +61,7 @@ public class BattleshipGameLogic {
 
 
     BattleshipPlayer currentPlayer() {
-        
+
         if (currPlayer == 1) {
             return player1;
         } else if (currPlayer == 2) {
@@ -71,7 +71,7 @@ public class BattleshipGameLogic {
     }
 
     void generateValidMovesList() {
-        
+
         moves.clear();
         for (int i = 0; i < currentPlayer().playerOceanHits.length; ++i) {
             for (int j = 0; j < currentPlayer().playerOceanHits[i].length; ++j) {
@@ -83,7 +83,7 @@ public class BattleshipGameLogic {
     }
 
     boolean isValidMove(int i, int j) {
-        
+
         generateValidMovesList();
         Point move = new Point(i, j);
         return moves.contains(move);

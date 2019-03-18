@@ -11,15 +11,15 @@ public class Player {
 		playerTurn = turn;
 		playerScore = 0;
 	}
-	
+
 	public void setPlayerScore(int score) {
 		playerScore = score;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
-	
+
 	public int getScore() {
 		return playerScore;
 	}

@@ -3,7 +3,7 @@ import boardGameGUI.BoardGame;
 
 import java.io.IOException;
 public abstract class GameDriver {
-	
+
 	public BoardGame boardGUI;
 	public GamePiece[][] boardArray;
 	public int currentPlayer;
