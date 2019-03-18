@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import memGame.DrawMemoryDriver;
+import othelloGame.DrawOthelloDriver;
 
 public class BoardGame {
 	public String gameType;
@@ -147,6 +148,9 @@ public class BoardGame {
 				if (gameType.equals("Memory")) {
 					DrawMemoryDriver.handleMove(boardGame);
 					boardClicked = false;
+				} else if (gameType.equals("Othello")) {
+					DrawOthelloDriver.handleMove(boardGame);
+					boardClicked = false;
 				}
 			}
 	    });
@@ -172,8 +176,9 @@ public class BoardGame {
 						if (gameType.equals("Memory")) {
 							DrawMemoryDriver.handleMove(boardGame);
 							boardClicked = false;
-						} else {
-							
+						} else if (gameType.equals("Othello")){
+							DrawOthelloDriver.handleMove(boardGame);
+							boardClicked = false;
 						}
 	    			}
 	    	    });

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Battleship.DrawBattleshipGameBoard;
 import memGame.DrawMemoryDriver;
+import othelloGame.DrawOthelloDriver;
 import othelloGame.OthelloDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,7 +99,7 @@ public class LauncherController {
 		//Dummy code
 		System.out.println("Starting Othello...");
 		//Run game here
-		new OthelloDriver(p1Name.getText(), p2Name.getText(), 8, 8, "Othello").runGame();
+		DrawOthelloDriver drawOthelloDriver = new DrawOthelloDriver(p1Name.getText(), p2Name.getText(), 8, 8, "Othello");
 	}
 	
 	@FXML

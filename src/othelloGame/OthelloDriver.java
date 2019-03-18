@@ -2,27 +2,29 @@ package othelloGame;
 
 import java.io.IOException;
 import java.util.Stack;
-import java.util.concurrent.CountDownLatch;
-
 import GameEnvironment.GameDriver;
 import GameEnvironment.GamePiece;
 import GameEnvironment.Player;
 import boardGameGUI.BoardGame;
-import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 
 public class OthelloDriver extends GameDriver{
 	public int rows, cols;
 	final Image redDisk = new Image("/resources/red-circle.jpg");
 	final Image blueDisk = new Image("/resources/blue-circle.png");
-	volatile CountDownLatch cl = new CountDownLatch(1);
 	public OthelloDriver(String player1Name, String player2Name, int rows, int cols, String gameName) throws IOException {
 		super(player1Name, player2Name, rows, cols, gameName);
 		this.rows = rows;
 		this.cols = cols;
 		this.players = new OthelloPlayer[]{new OthelloPlayer(player1Name, 0), new OthelloPlayer(player2Name, 1)};
+		players[0].setPlayerScore(2);
+		players[1].setPlayerScore(2);
         boardGUI = new BoardGame(players[0], players[1],rows, cols, gameName);
+        boardGUI.updatePlayer1Score();
+        boardGUI.updatePlayer2Score();
         this.currentPlayer = 0;
+        
 	}
 
 	@Override
@@ -42,31 +44,51 @@ public class OthelloDriver extends GameDriver{
 			}
 		}
 	}
+	public void printBoardArray() {
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < cols; col++) {
+				System.out.print(boardArray[row][col].getName() + " ");
+			}
+			System.out.println();
+		}
+	}
+	public void runTurn(GridPane boardGame) {
+		if (!isGameOver() && isLegalMove(boardGUI.colClicked, boardGUI.rowClicked)) {
+			printBoardArray();
+			makeMove(boardGUI.colClicked, boardGUI.rowClicked);
+			printBoardArray();
+			System.out.println(currentPlayer);
+			switchTurn();
+			boardGUI.switchTurnGUI();
+			boardGUI.updatePlayer1Score();
+		    boardGUI.updatePlayer2Score();
+		    if (isGameOver()) {
+				determineWinner();
+				boardGUI.displayWinner(winner);
+		    }
+		}
+	}
+	
+	public void determineWinner() {
+		if (players[0].getScore() > players[1].getScore()) {
+			winner = players[0].getUserName();
+		} else if (players[0].getScore() < players[1].getScore()) {
+			winner = players[1].getUserName();
+		} else {
+			winner = "TIE";
+		}
+	}
 	
 	@Override
 	public void runGame() {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				initializeBoardArray();
-				System.out.println("hello");
-				while (!isGameOver()) {
-					System.out.println("waiting for click");
-					if (boardGUI.boardClicked) {
-//						cl.countDown();
-						System.out.println("released here");
-						System.out.println(boardGUI.rowClicked);
-						System.out.println(boardGUI.colClicked);
-						boardGUI.boardClicked = false;
-					}	
-				}
-			}
-		});
+		initializeBoardArray();
 	}
 	public boolean existsLegalMoves() {
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
 				if (isLegalMove(col, row)) {
+					System.out.print(row);
+					System.out.println(col);
 					return true;
 				}
 			}
@@ -152,96 +174,96 @@ public class OthelloDriver extends GameDriver{
 	
 	public boolean existsSameColorLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getLeftCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getLeftCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getLeftCell(x, y);
+			cur = (OthelloPiece) getLeftCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getRightCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getRightCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getRightCell(x, y);
+			cur = (OthelloPiece) getRightCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorUpper(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getUpperCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getUpperCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getUpperCell(x, y);
+			cur = (OthelloPiece) getUpperCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorLower(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getLowerCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getLowerCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getLowerCell(x, y);
+			cur = (OthelloPiece) getLowerCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorUpperLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getUpperLeftCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getUpperLeftCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getUpperLeftCell(x, y);
+			cur = (OthelloPiece) getUpperLeftCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorUpperRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getUpperRightCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getUpperRightCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getUpperRightCell(x, y);
+			cur = (OthelloPiece) getUpperRightCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorLowerLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getLowerLeftCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getLowerLeftCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getLowerLeftCell(x, y);
+			cur = (OthelloPiece) getLowerLeftCell(cur.x, cur.y);
 		}
 		return false;
 	}
 	
 	public boolean existsSameColorLowerRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
-		GamePiece cur = getLowerRightCell(x, y);
+		OthelloPiece cur = (OthelloPiece) getLowerRightCell(x, y);
 		while (cur != null) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
-			cur = getLowerRightCell(x, y);
+			cur = (OthelloPiece) getLowerRightCell(cur.x, cur.y);
 		}
 		return false;
 	}
@@ -254,14 +276,14 @@ public class OthelloDriver extends GameDriver{
 		}
 	}
 	
-	public boolean flipLeftCells(int x, int y, String target) {
+	public void flipLeftCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getLeftCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getLeftCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -271,19 +293,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipRightCells(int x, int y, String target) {
+	public void flipRightCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getRightCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getRightCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -293,19 +313,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipUpperCells(int x, int y, String target) {
+	public void flipUpperCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getUpperCell(x, y);;
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getUpperCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -315,19 +333,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipLowerCells(int x, int y, String target) {
+	public void flipLowerCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getLowerCell(x, y);;
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getLowerCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -337,19 +353,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipUpperLeftCells(int x, int y, String target) {
+	public void flipUpperLeftCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getUpperLeftCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getUpperLeftCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -359,19 +373,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipUpperRightCells(int x, int y, String target) {
+	public void flipUpperRightCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getUpperRightCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getUpperRightCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") &&  !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -381,19 +393,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipLowerLeftCells(int x, int y, String target) {
+	public void flipLowerLeftCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getLowerLeftCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getLowerLeftCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -403,19 +413,17 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
 	}
 	
-	public boolean flipLowerRightCells(int x, int y, String target) {
+	public void flipLowerRightCells(int x, int y, String target) {
 		OthelloPiece cur = (OthelloPiece) getLowerRightCell(x, y);
 		Stack<OthelloPiece> toBeFlipped = new Stack<OthelloPiece>();
-		while (cur != null && !cur.getName().equals(target)) {
+		while (cur != null && !cur.getName().equals(target) && !cur.getName().equals("-")) {
 			toBeFlipped.push(cur);
 			cur = (OthelloPiece) getLowerRightCell(cur.x, cur.y);
 		}
-		if (cur != null && !toBeFlipped.isEmpty()) {
+		if (cur != null && !cur.getName().equals("-") && !toBeFlipped.isEmpty()) {
 			int score = getCurrentPlayer().getScore();
 			getCurrentPlayer().setPlayerScore(score + toBeFlipped.size());
 			Player opposite = getOppositePlayer(currentPlayer);
@@ -425,43 +433,82 @@ public class OthelloDriver extends GameDriver{
 				cur.flip();
 				boardGUI.modifyCell(cur.x, cur.y, getCurrentPlayer().getGamePiece().getImage());
 			}
-			return true;
 		}
-		return false;
+	}
+	public boolean isValidLeft(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getLeftCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorLeft(cur.x, cur.y);
 	}
 	
+	public boolean isValidRight(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getRightCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorRight(cur.x, cur.y);
+	}
+	
+	public boolean isValidUpper(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getUpperCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorUpper(cur.x, cur.y);
+	}
+	
+	public boolean isValidLower(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getLowerCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorLower(cur.x, cur.y);
+	}
+	
+	public boolean isValidUpperLeft(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getUpperLeftCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorUpperLeft(cur.x, cur.y);
+	}
+	
+	public boolean isValidUpperRight(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getUpperRightCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorUpperRight(cur.x, cur.y);
+	}
+	
+	public boolean isValidLowerLeft(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getLowerLeftCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorLowerLeft(cur.x, cur.y);
+	}
+	
+	public boolean isValidLowerRight(int x, int y) {
+		String oppositeColor = players[currentPlayer^1].getGamePiece().getName();
+		OthelloPiece cur = (OthelloPiece) getLowerRightCell(x,y);
+		return cur!= null && cur.getName().equals(oppositeColor) && existsSameColorLowerRight(cur.x, cur.y);
+	}
 	@Override
 	public boolean isLegalMove(int x, int y) {
-		String target = getCurrentPlayer().getGamePiece().getName();
 		if (isOccupied(x, y)) {
 			return false;
 		}
-		boolean isLegal = flipLeftCells(x, y, target);
-		isLegal |= flipRightCells(x, y, target);
-		isLegal |= flipLowerCells(x, y, target);
-		isLegal |= flipUpperCells(x, y, target);
-		isLegal |= flipUpperLeftCells(x, y, target);
-		isLegal |= flipUpperRightCells(x, y, target);
-		isLegal |= flipLowerLeftCells(x, y, target);
-		isLegal |= flipLowerRightCells(x, y, target);
-		return isLegal;
+		return isValidLeft(x, y) || isValidRight(x, y) || isValidUpper(x, y) || isValidLower(x, y) || 
+				isValidUpperLeft(x, y) || isValidUpperRight(x, y) || isValidLowerLeft(x, y) || isValidLowerRight(x, y);
 	}
 
 	@Override
 	public void makeMove(int x, int y) {
-		if (isLegalMove(x, y)) {
-			OthelloPiece move = ((OthelloPiece) boardArray[x][y]);
+			String target = getCurrentPlayer().getGamePiece().getName();
+			OthelloPiece move = ((OthelloPiece) boardArray[y][x]);
 			if (currentPlayer == 0) {
 				move.placeDisk("R");
 			} else {
 				move.placeDisk("B");
 			}
-		}
+			updateScore(currentPlayer, getCurrentPlayer().getScore() + 1);
+			boardGUI.modifyCell(x, y, getCurrentPlayer().getGamePiece().getImage());
+			flipLeftCells(x, y, target);
+			flipRightCells(x, y, target);
+			flipUpperCells(x, y, target);
+			flipLowerCells(x, y, target);
+			flipUpperRightCells(x, y, target);
+			flipUpperLeftCells(x, y, target);
+			flipLowerRightCells(x, y, target);
+			flipLowerLeftCells(x, y, target);
 	}
-
-	@Override
-	public void run() {
-		runGame();
-	}
-
 }
