@@ -1,6 +1,7 @@
 package boardGameGUI;
 
 import GameEnvironment.Player;
+import Launcher.LauncherController;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -222,6 +223,40 @@ public class BoardGame {
 		} else {
 			winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
 		}
+		if (winner.equals(player1.getUserName())){
+			switch(gameType) {
+			case "TicTacToe":
+				LauncherController.incrementTicTacToeForP1();
+				break;
+			case "Othello":
+				LauncherController.incrementOthelloForP1();
+				System.out.println(LauncherController.p1Score.getOthello());
+				break;
+			case "Memory":
+				LauncherController.incrementMemoryForP1();
+				break;
+			case "Battleship":
+				LauncherController.incrementBattleshipForP1();
+				break;
+			}
+		} else if (winner.equals(player2.getUserName())) {
+			switch(gameType) {
+			case "TicTacToe":
+				LauncherController.incrementTicTacToeForP2();
+				break;
+			case "Othello":
+				LauncherController.incrementOthelloForP2();
+				System.out.println(LauncherController.p2Score.getOthello());
+				break;
+			case "Memory":
+				LauncherController.incrementMemoryForP2();
+				break;
+			case "Battleship":
+				LauncherController.incrementBattleshipForP2();
+				break;
+		}
+		}
+//		LauncherController.leaderboard.refresh();
 		winnerDialog.setContentText("The window will exit after...");
 		winnerDialog.showAndWait();
 		primaryStage.close();
