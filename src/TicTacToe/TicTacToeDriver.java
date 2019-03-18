@@ -6,6 +6,8 @@ import java.io.IOException;
 
 public class TicTacToeDriver extends GameDriver
 {
+
+
     public TicTacToeDriver(String p1, String p2, int rows, int cols, String game) throws IOException
     {
         super(p1, p2, rows, cols, game);
@@ -14,10 +16,6 @@ public class TicTacToeDriver extends GameDriver
         boardGUI = new TicTacToeGameBoard(player1, player2, rows, cols, game);
     }
 
-    @Override
-    public boolean isGameOver() {
-        return false;
-    }
 
     @Override
     public String getWinner() {
@@ -26,7 +24,8 @@ public class TicTacToeDriver extends GameDriver
 
     @Override
     public void initializeBoardArray() {
-        System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+        //System.out.println("DEBUG ME!" + new Throwable().getStackTrace()[0].getMethodName());
+
     }
 
     @Override

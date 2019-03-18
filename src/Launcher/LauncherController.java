@@ -1,6 +1,7 @@
 package Launcher;
 
 import Battleship.BattleshipDriver;
+import TicTacToe.TicTacToeDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -83,10 +84,11 @@ public class LauncherController {
 	}
 
 	@FXML
-	protected void startTicTacToe(MouseEvent event) {
+	protected void startTicTacToe(MouseEvent event) throws Exception {
 		//Dummy code
 		System.out.println("Starting TicTacToe...");
 		//Run game here
+        TicTacToeDriver tictactoeDriver = new TicTacToeDriver(getPlayer1Name(), getPlayer2Name(), 3, 3, "TicTacToe");
 	}
 
 	@FXML
