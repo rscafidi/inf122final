@@ -1,7 +1,6 @@
 package Launcher;
 
-import Battleship.DrawBattleshipGameBoard;
-import Battleship.newDrawBattleship;
+import Battleship.BattleshipDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -111,7 +110,8 @@ public class LauncherController {
 		//current issue:  model does not work because both players are attached
 		//to the game board.
 //		BattleshipDriver battleshipDriver = new BattleshipDriver(player1, player2, 10, 10, "Battleship");
-		new newDrawBattleship(getPlayer1Name(),getPlayer2Name());
+//		new newDrawBattleship(getPlayer1Name(),getPlayer2Name());
+		BattleshipDriver battleshipDriver = new BattleshipDriver(getPlayer1Name(), getPlayer2Name(), 10, 10, "Battleship");
 	}
 
 }

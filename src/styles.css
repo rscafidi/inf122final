@@ -1,0 +1,7 @@
+.pane:hover {
+    -fx-background-color: darkred ;
+}
+
+.pane {
+    -fx-background-color: aquamarine;
+}
