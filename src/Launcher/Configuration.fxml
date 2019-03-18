@@ -51,9 +51,9 @@
                   <Image url="@/resources/tic-tac-toe-icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startCheckers" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startOthello" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@/resources/checkers-icon.jpg" />
+                  <Image url="@/resources/Othello-icon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#startMemory" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">

@@ -15,10 +15,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import memGame.DrawMemoryDriver;
+import othelloGame.DrawOthelloDriver;
 
 import java.io.IOException;
 
 public class BoardGame {
+	public String gameType;
 	public BorderPane layout;
 	public GridPane boardGame;
 	public String turn;
@@ -32,6 +35,7 @@ public class BoardGame {
 	public Stage primaryStage;
 
 	public BoardGame(Player player1, Player player2, int rows, int cols, String gameName) throws IOException {
+		gameType = gameName;
 		primaryStage = new Stage();
 		boardGame = new GridPane();
 		layout = new BorderPane();
@@ -49,10 +53,13 @@ public class BoardGame {
 				initializeBoard(rows, cols, "/boardGameGUI/ocean-cell.png");
 				break;
 			case "Memory":
-				initializeBoard(rows, cols, "path/to/memory/cell");
+				initializeBoard(rows, cols, "/boardGameGUI/memory-cell.jpg");
 				break;
 			case "TicTacToe":
 				initializeBoard(rows, cols, "path/to/tictactoe/cell");
+				break;
+			case "Othello":
+				initializeBoard(rows, cols, "/boardGameGUI/white-square-cell.jpg");
 				break;
 		}
 		nameScoreHolder = new HBox(nameScore1, nameScore2);
@@ -124,34 +131,60 @@ public class BoardGame {
 
 
 	public void addCell(int rowIndex, int colIndex, Image image) {
-
-	    Pane cell = new Pane(new ImageView(image));
+	    Pane cell = new Pane();
+	    ImageView img = new ImageView(image);
+	    img.fitWidthProperty().bind(cell.widthProperty());
+	    img.fitHeightProperty().bind(cell.heightProperty());
+	    cell.getChildren().add(img);
 	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
 				rowClicked = rowIndex;
 				colClicked = colIndex;
 				boardClicked = true;
+
+				// For Memory game
+				if (gameType.equals("Memory")) {
+					DrawMemoryDriver.handleMove(boardGame);
+					boardClicked = false;
+				} else if (gameType.equals("Othello")) {
+					DrawOthelloDriver.handleMove(boardGame);
+					boardClicked = false;
+				}
 			}
 	    });
 	    boardGame.add(cell, colIndex, rowIndex);
 	}
 
 	public void modifyCell(int colIndex, int rowIndex, Image image) {
-
-		ObservableList<Node> childrens = boardGame.getChildren();
-		for (Node node : childrens) {
+		for (Node node : boardGame.getChildren()) {
 	        if(GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node) == colIndex) {
-	        	Pane cell = new Pane(new ImageView(image));
+	        	boardGame.getChildren().remove(node);
+	    	    Pane cell = new Pane();
+	    	    ImageView img = new ImageView(image);
+	    	    img.fitWidthProperty().bind(cell.widthProperty());
+	    	    img.fitHeightProperty().bind(cell.heightProperty());
+	    	    cell.getChildren().add(img);
 	    	    cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	    			@Override
 	    			public void handle(MouseEvent arg0) {
 	    				rowClicked = rowIndex;
 	    				colClicked = colIndex;
 	    				boardClicked = true;
+	    				// For Memory game
+						if (gameType.equals("Memory")) {
+							DrawMemoryDriver.handleMove(boardGame);
+							boardClicked = false;
+						} else if (gameType.equals("Othello")){
+							DrawOthelloDriver.handleMove(boardGame);
+							boardClicked = false;
+						}
 	    			}
-
 	    	    });
+				boardGame.add(cell, colIndex, rowIndex);
+				boardGame.setGridLinesVisible(false);
+				boardGame.setGridLinesVisible(true);
+				break;
 	        }
 		}
 	}
@@ -184,7 +217,11 @@ public class BoardGame {
 
 		Alert winnerDialog = new Alert(Alert.AlertType.INFORMATION);
 		winnerDialog.setTitle("Game Over");
-		winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
+		if (winner.equals("TIE")) {
+			winnerDialog.setHeaderText("It's a TIE!");
+		} else {
+			winnerDialog.setHeaderText("Congratulation! " + winner + " has won!");
+		}
 		winnerDialog.setContentText("The window will exit after...");
 		winnerDialog.showAndWait();
 		primaryStage.close();

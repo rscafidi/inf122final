@@ -9,6 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
+import memGame.DrawMemoryDriver;
+import othelloGame.DrawOthelloDriver;
+
+import java.io.IOException;
 
 public class LauncherController {
     @FXML
@@ -92,10 +96,11 @@ public class LauncherController {
 	}
 
 	@FXML
-	protected void startCheckers(MouseEvent event) {
+	protected void startOthello(MouseEvent event) throws IOException {
 		//Dummy code
-		System.out.println("Starting Checkers...");
+		System.out.println("Starting Othello...");
 		//Run game here
+		DrawOthelloDriver drawOthelloDriver = new DrawOthelloDriver(p1Name.getText(), p2Name.getText(), 8, 8, "Othello");
 	}
 
 	@FXML
@@ -103,6 +108,7 @@ public class LauncherController {
 		//Dummy code
 		System.out.println("Starting Memory...");
 		//Run game here
+		DrawMemoryDriver drawMemoryDriver = new DrawMemoryDriver(p1Name.getText(), p2Name.getText(), 6, 6, "Memory");
 	}
 
 	@FXML
