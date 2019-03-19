@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import static Launcher.LauncherController.readScoreBoardFromFile;
+
 public class Launcher extends Application {
 	static LauncherController controller;
     @Override
@@ -13,6 +15,7 @@ public class Launcher extends Application {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Configuration.fxml"));
         Parent root = loader.load();
         controller = (LauncherController)loader.getController();
+        controller.readScoreBoardFromFile();
         primaryStage.setTitle("Game Board Launcher");
         primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.show();

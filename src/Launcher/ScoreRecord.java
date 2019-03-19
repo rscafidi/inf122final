@@ -1,5 +1,6 @@
 package Launcher;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,21 +9,22 @@ import java.util.HashSet;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ScoreRecord {
+public class ScoreRecord implements Serializable {
 	static HashMap<String, ArrayList<Integer>> scores = new HashMap<String, ArrayList<Integer>>();
 	static ArrayList<String> currentGames = new ArrayList<String>(Arrays.asList("TicTacToe", "Othello", "Memory", "Battleship"));
 	static HashSet<String> currentPlayers = new HashSet<String>();
-	private SimpleStringProperty playerName;
-	private SimpleIntegerProperty ticTacToe, othello, memory, battleship;
+	private String playerName;
+	private int ticTacToe, othello, memory, battleship;
+
 	public ScoreRecord(String playerName, int ticTacToe, int othello, int memory, int battleship) {
-		this.playerName = new SimpleStringProperty(playerName);
-		this.ticTacToe = new SimpleIntegerProperty(ticTacToe);
-		this.othello = new SimpleIntegerProperty(othello);
-		this.memory = new SimpleIntegerProperty(memory);
-		this.battleship = new SimpleIntegerProperty(battleship);
+		this.playerName = playerName;
+		this.ticTacToe = ticTacToe;
+		this.othello = othello;
+		this.memory = memory;
+		this.battleship = battleship;
 		addPlayerToDatabase(playerName);
 	}
-	
+
 	public void addPlayerToDatabase(String player) {
 		currentPlayers.add(player);
 		ArrayList<Integer> initialScores = new ArrayList<Integer>();
@@ -38,40 +40,41 @@ public class ScoreRecord {
 		int newScore = scoresList.get(indexOfGame) + 1;
 		scoresList.set(indexOfGame, newScore);
 	}
-	
+
 	public String getPlayerName() {
-		return playerName.get();
+		return playerName;
 	}
-	
+
 	public int getTicTacToe() {
-		return ticTacToe.get();
+		return ticTacToe;
 	}
-	
+
 	public void setTicTacToe(int ticTacToe) {
-		this.ticTacToe.set(ticTacToe);
+		this.ticTacToe = ticTacToe;
 	}
-	
+
 	public int getOthello() {
-		return othello.get();
+		return othello;
 	}
-	
+
 	public void setOthello(int othello) {
-		this.othello.set(othello);
+		this.othello = othello;
 	}
 
 	public int getMemory() {
-		return memory.get();
+		return memory;
 	}
-	
+
 	public void setMemory(int memory) {
-		this.memory.set(memory);
+		this.memory =memory;
 	}
-	
+
 	public int getBattleship() {
-		return battleship.get();
+		return battleship;
 	}
-	
+
 	public void setBattleship(int battleship) {
-		this.battleship.set(battleship);
+		this.battleship = battleship;
 	}
+
 }

@@ -164,7 +164,7 @@ public class TicTacToeDriver extends GameDriver
         for(int d = 0; d<3; d++)
         {
             if(boardArray[d][0].getName().equals("X")) xCounter1++;
-            if(boardArray[d][0].getName().equals("O")) oCounter++;
+            if(boardArray[d][0].getName().equals("O")) oCounter1++;
         }
 
         if(xCounter1==3 || oCounter1==3) return true;
@@ -261,7 +261,7 @@ public class TicTacToeDriver extends GameDriver
         for(int d = 0; d<3; d++)
         {
             if(boardArray[d][0].getName().equals("X")) xCounter1++;
-            if(boardArray[d][0].getName().equals("O")) oCounter++;
+            if(boardArray[d][0].getName().equals("O")) oCounter1++;
         }
 
         //if(xCounter1==3 || oCounter1==3) return true;

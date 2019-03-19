@@ -19,7 +19,7 @@ import memGame.DrawMemoryDriver;
 import othelloGame.DrawOthelloDriver;
 import TicTacToe.DrawTicTacToeDriver;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,22 +35,22 @@ public class LauncherController implements Initializable{
 
 	@FXML
 	private Button confirmP2;
-	
+
 	@FXML
 	private TableView<ScoreRecord> leaderboard;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, String> playerNames;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> ticTacToeScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> othelloScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> memoryScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> battleshipScores;
 
@@ -89,8 +89,15 @@ public class LauncherController implements Initializable{
 	}
     @FXML
     protected void addPlayer1ToTable() {
-    	p1Score = new ScoreRecord(player1, 0, 0, 0, 0);
-    	leaderboard.getItems().add(p1Score);
+		for (ScoreRecord record : leaderboard.getItems()) {
+			if (record.getPlayerName().equals(player1)) {
+				p1Score = record;
+			}
+		}
+		if (p1Score == null) {
+			p1Score = new ScoreRecord(player1, 0, 0, 0, 0);
+			leaderboard.getItems().add(p1Score);
+		}
     }
     @FXML
     protected void confirmP1Clicked(ActionEvent event) {
@@ -108,14 +115,21 @@ public class LauncherController implements Initializable{
         p1Name.setDisable(true);
         confirmP1.setDisable(true);
         addPlayer1ToTable();
-        
+
     }
     @FXML
     protected void addPlayer2ToTable() {
-    	p2Score = new ScoreRecord(player2, 0, 0, 0, 0);
-    	leaderboard.getItems().add(p2Score);
+		for (ScoreRecord record : leaderboard.getItems()) {
+			if (record.getPlayerName().equals(player2)) {
+				p2Score = record;
+			}
+		}
+		if (p2Score == null) {
+			p2Score = new ScoreRecord(player2, 0, 0, 0, 0);
+			leaderboard.getItems().add(p2Score);
+		}
     }
-    
+
     @FXML
     protected void confirmP2Clicked(ActionEvent event) {
         Window p2Error = confirmP2.getScene().getWindow();
@@ -133,45 +147,100 @@ public class LauncherController implements Initializable{
         confirmP2.setDisable(true);
         addPlayer2ToTable();
 	}
-    
+
+	public static void writeUpdatedFile() {
+		try {
+			FileOutputStream f = new FileOutputStream(new File("./scores.txt"));
+			ObjectOutputStream o = new ObjectOutputStream(f);
+
+			//write objects to file
+			for (ScoreRecord record : Launcher.controller.leaderboard.getItems()) {
+				o.writeObject(record);
+			}
+
+			o.close();
+			f.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e ) {
+			System.out.println("Error initializing the stream");
+		}
+	}
+
+	public static void readScoreBoardFromFile() {
+		try {
+			FileInputStream fi = new FileInputStream(new File("./scores.txt"));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+
+			//read objects into leaderboard
+			ScoreRecord srObj;
+			srObj = (ScoreRecord) oi.readObject();
+			while(srObj != null) {
+				Launcher.controller.leaderboard.getItems().add(srObj);
+				srObj = (ScoreRecord) oi.readObject();
+			}
+
+			oi.close();
+			fi.close();
+			Launcher.controller.leaderboard.refresh();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
     public static void incrementTicTacToeForP1() {
     	p1Score.setTicTacToe(p1Score.getTicTacToe() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementOthelloForP1() {
     	p1Score.setOthello(p1Score.getOthello() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementMemoryForP1() {
     	p1Score.setMemory(p1Score.getMemory() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementBattleshipForP1() {
     	p1Score.setBattleship(p1Score.getBattleship() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementTicTacToeForP2() {
     	p2Score.setTicTacToe(p2Score.getTicTacToe() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementOthelloForP2() {
     	p2Score.setOthello(p2Score.getOthello() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementMemoryForP2() {
     	p2Score.setMemory(p2Score.getMemory() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
-    
+
     public static void incrementBattleshipForP2() {
     	p2Score.setBattleship(p2Score.getBattleship() + 1);
     	Launcher.controller.leaderboard.refresh();
+		writeUpdatedFile();
     }
 	@FXML
 	protected void startTicTacToe(MouseEvent event) throws Exception {
@@ -208,8 +277,8 @@ public class LauncherController implements Initializable{
 		BattleshipDriver battleshipDriver = new BattleshipDriver(getPlayer1Name(), getPlayer2Name(), 10, 10, "Battleship");
 	}
 
-	
-	
-	
+
+
+
 
 }
