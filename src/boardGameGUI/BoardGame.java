@@ -3,7 +3,6 @@ package boardGameGUI;
 import GameEnvironment.Player;
 import Launcher.LauncherController;
 import TicTacToe.DrawTicTacToeDriver;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -235,32 +234,32 @@ public class BoardGame {
 			case "TicTacToe":
 				LauncherController.incrementTicTacToeForP1();
 				break;
-			case "Othello":
-				LauncherController.incrementOthelloForP1();
-				System.out.println(LauncherController.p1Score.getOthello());
-				break;
-			case "Memory":
-				LauncherController.incrementMemoryForP1();
-				break;
-			case "Battleship":
-				LauncherController.incrementBattleshipForP1();
-				break;
-			}
-		} else if (winner.equals(player2.getUserName())) {
-			switch(gameType) {
-			case "TicTacToe":
-				LauncherController.incrementTicTacToeForP2();
-				break;
-			case "Othello":
-				LauncherController.incrementOthelloForP2();
-				System.out.println(LauncherController.p2Score.getOthello());
-				break;
-			case "Memory":
-				LauncherController.incrementMemoryForP2();
-				break;
-			case "Battleship":
-				LauncherController.incrementBattleshipForP2();
-				break;
+//			case "Othello":
+//				LauncherController.incrementOthelloForP1();
+////				System.out.println(LauncherController.p1Score.getOthello());
+//				break;
+//			case "Memory":
+//				LauncherController.incrementMemoryForP1();
+//				break;
+//			case "Battleship":
+//				LauncherController.incrementBattleshipForP1();
+//				break;
+//			}
+//		} else if (winner.equals(player2.getUserName())) {
+//			switch(gameType) {
+//			case "TicTacToe":
+//				LauncherController.incrementTicTacToeForP2();
+//				break;
+//			case "Othello":
+//				LauncherController.incrementOthelloForP2();
+////				System.out.println(LauncherController.p2Score.getOthello());
+//				break;
+//			case "Memory":
+//				LauncherController.incrementMemoryForP2();
+//				break;
+//			case "Battleship":
+//				LauncherController.incrementBattleshipForP2();
+//				break;
 		}
 		}
 //		LauncherController.leaderboard.refresh();
