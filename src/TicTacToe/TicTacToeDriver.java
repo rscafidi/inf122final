@@ -1,12 +1,18 @@
 package TicTacToe;
 
 import GameEnvironment.GameDriver;
+import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
 public class TicTacToeDriver extends GameDriver
 {
-
+    final Image X = new Image("/resources/tttX.png");
+    final Image O = new Image("/resources/tttO.png");
+    final Image BLANK = new Image("/resources/tttBlank.png");
+    final int rows = 3;
+    final int cols = 3;
 
     public TicTacToeDriver(String p1, String p2, int rows, int cols, String game) throws IOException
     {
@@ -17,6 +23,11 @@ public class TicTacToeDriver extends GameDriver
     }
 
 
+    @Override
+    public boolean isGameOver()
+    {
+        return false;
+    }
     @Override
     public String getWinner() {
         return "yeet";
@@ -46,5 +57,9 @@ public class TicTacToeDriver extends GameDriver
 
     @Override
     public void makeMove(int x, int y) {
+    }
+
+    public void runTurn(GridPane boardGame) {
+
     }
 }
