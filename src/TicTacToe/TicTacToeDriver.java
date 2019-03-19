@@ -39,7 +39,7 @@ public class TicTacToeDriver extends GameDriver
         } else {
             switchTurn();
             boardGUI.switchTurnGUI();
-            return existsLegalMoves();
+            return !existsLegalMoves();
         }
     }
 
