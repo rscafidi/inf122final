@@ -35,22 +35,22 @@ public class LauncherController implements Initializable{
 
 	@FXML
 	private Button confirmP2;
-	
+
 	@FXML
 	private TableView<ScoreRecord> leaderboard;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, String> playerNames;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> ticTacToeScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> othelloScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> memoryScores;
-	
+
 	@FXML
 	private TableColumn<ScoreRecord, Integer> battleshipScores;
 
@@ -115,7 +115,7 @@ public class LauncherController implements Initializable{
         p1Name.setDisable(true);
         confirmP1.setDisable(true);
         addPlayer1ToTable();
-        
+
     }
     @FXML
     protected void addPlayer2ToTable() {
@@ -129,7 +129,7 @@ public class LauncherController implements Initializable{
 			leaderboard.getItems().add(p2Score);
 		}
     }
-    
+
     @FXML
     protected void confirmP2Clicked(ActionEvent event) {
         Window p2Error = confirmP2.getScene().getWindow();
@@ -194,49 +194,49 @@ public class LauncherController implements Initializable{
 		}
 
 	}
-    
+
     public static void incrementTicTacToeForP1() {
     	p1Score.setTicTacToe(p1Score.getTicTacToe() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementOthelloForP1() {
     	p1Score.setOthello(p1Score.getOthello() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementMemoryForP1() {
     	p1Score.setMemory(p1Score.getMemory() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementBattleshipForP1() {
     	p1Score.setBattleship(p1Score.getBattleship() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementTicTacToeForP2() {
     	p2Score.setTicTacToe(p2Score.getTicTacToe() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementOthelloForP2() {
     	p2Score.setOthello(p2Score.getOthello() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementMemoryForP2() {
     	p2Score.setMemory(p2Score.getMemory() + 1);
     	Launcher.controller.leaderboard.refresh();
 		writeUpdatedFile();
     }
-    
+
     public static void incrementBattleshipForP2() {
     	p2Score.setBattleship(p2Score.getBattleship() + 1);
     	Launcher.controller.leaderboard.refresh();
@@ -277,8 +277,8 @@ public class LauncherController implements Initializable{
 		BattleshipDriver battleshipDriver = new BattleshipDriver(getPlayer1Name(), getPlayer2Name(), 10, 10, "Battleship");
 	}
 
-	
-	
-	
+
+
+
 
 }

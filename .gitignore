@@ -144,10 +144,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-.idea/misc.xml
-.idea/encodings.xml
-.idea/modules.xml
-.idea/vcs.xml
 inf122final.iml
 META-INF/MANIFEST.MF
 .idea/artifacts/inf122final_jar.xml
@@ -159,3 +155,7 @@ src/META-INF/MANIFEST.MF
 .idea/artifacts/game.xml
 src/META-INF/MANIFEST.MF
 .idea/artifacts/game.xml
+.idea/vcs.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml

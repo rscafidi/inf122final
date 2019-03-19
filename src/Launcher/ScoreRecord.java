@@ -24,7 +24,7 @@ public class ScoreRecord implements Serializable {
 		this.battleship = battleship;
 		addPlayerToDatabase(playerName);
 	}
-	
+
 	public void addPlayerToDatabase(String player) {
 		currentPlayers.add(player);
 		ArrayList<Integer> initialScores = new ArrayList<Integer>();
@@ -40,23 +40,23 @@ public class ScoreRecord implements Serializable {
 		int newScore = scoresList.get(indexOfGame) + 1;
 		scoresList.set(indexOfGame, newScore);
 	}
-	
+
 	public String getPlayerName() {
 		return playerName;
 	}
-	
+
 	public int getTicTacToe() {
 		return ticTacToe;
 	}
-	
+
 	public void setTicTacToe(int ticTacToe) {
 		this.ticTacToe = ticTacToe;
 	}
-	
+
 	public int getOthello() {
 		return othello;
 	}
-	
+
 	public void setOthello(int othello) {
 		this.othello = othello;
 	}
@@ -64,15 +64,15 @@ public class ScoreRecord implements Serializable {
 	public int getMemory() {
 		return memory;
 	}
-	
+
 	public void setMemory(int memory) {
 		this.memory =memory;
 	}
-	
+
 	public int getBattleship() {
 		return battleship;
 	}
-	
+
 	public void setBattleship(int battleship) {
 		this.battleship = battleship;
 	}
