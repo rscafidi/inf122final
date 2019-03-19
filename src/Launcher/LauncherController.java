@@ -1,6 +1,7 @@
 package Launcher;
 
 import Battleship.BattleshipDriver;
+import TicTacToe.TicTacToeDriver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 import memGame.DrawMemoryDriver;
 import othelloGame.DrawOthelloDriver;
+import TicTacToe.DrawTicTacToeDriver;
 
 import java.io.IOException;
 import java.net.URL;
@@ -172,10 +174,11 @@ public class LauncherController implements Initializable{
     	Launcher.controller.leaderboard.refresh();
     }
 	@FXML
-	protected void startTicTacToe(MouseEvent event) {
+	protected void startTicTacToe(MouseEvent event) throws Exception {
 		//Dummy code
 		System.out.println("Starting TicTacToe...");
 		//Run game here
+        DrawTicTacToeDriver drawtictactoeDriver = new DrawTicTacToeDriver(p1Name.getText(), p2Name.getText(), 3, 3, "TicTacToe");
 	}
 
 	@FXML

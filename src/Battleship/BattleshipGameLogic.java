@@ -37,6 +37,7 @@ public class BattleshipGameLogic {
                 if (player2.playerShips[i][j] != 0) { //if second player has a ship at that position add hit to current playerOceanHits and increment their score by 1
                     player1.playerOceanHits[i][j] = 1; //hit
                     player1.setPlayerScore(player1.getScore() + 1);
+                    checkForWinner();
                 } else {
                     player1.playerOceanHits[i][j] = 2; //miss
                 }
@@ -44,6 +45,7 @@ public class BattleshipGameLogic {
                 if (player1.playerShips[i][j] != 0) { //if first player has a ship at that position add hit to current playerOceanHits and increment their score by 1
                     player2.playerOceanHits[i][j] = 1; //hit
                     player2.setPlayerScore(player2.getScore() + 1);
+                    checkForWinner();
                 } else {
                     player2.playerOceanHits[i][j] = 2; //miss
                 }
