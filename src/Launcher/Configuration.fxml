@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.9145077720207254" minHeight="550.0" minWidth="700.0" orientation="VERTICAL" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Launcher.LauncherController">
+<SplitPane dividerPositions="0.9145077720207254" minHeight="550.0" minWidth="700.0" orientation="VERTICAL" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Launcher.LauncherController">
   <items>
       <AnchorPane maxHeight="350.0" maxWidth="513.0" minHeight="350.0" minWidth="800.0" prefHeight="350.0" prefWidth="800.0">
          <children>
@@ -25,8 +25,8 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="117.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Name" textAlignment="CENTER" />
-            <Text layoutX="118.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2's Name" textAlignment="CENTER" />
+            <Text layoutX="103.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Name" textAlignment="CENTER" />
+            <Text layoutX="103.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2's Name" textAlignment="CENTER" />
             <Button fx:id="confirmP1" layoutX="319.0" layoutY="245.0" mnemonicParsing="false" onAction="#confirmP1Clicked" text="OK" />
             <Button fx:id="confirmP2" layoutX="319.0" layoutY="301.0" mnemonicParsing="false" onAction="#confirmP2Clicked" text="OK" />
             <ImageView fitHeight="175.0" fitWidth="235.0" layoutX="117.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
