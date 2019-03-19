@@ -2,7 +2,6 @@ package Launcher;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.LinkedTreeMap;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.*;
@@ -13,7 +12,7 @@ import java.util.HashSet;
 
 public class ScoreRecord {
 
-	static LinkedTreeMap<String, LinkedTreeMap<String, Integer>> playersAndScores = new LinkedTreeMap<String, LinkedTreeMap<String, Integer>>();
+	static HashMap<String, HashMap<String, Integer>> playersAndScores = new HashMap<String, HashMap<String, Integer>>();
 
 	static String scoreRecordsFile = "scores.txt";
 	static String json;
@@ -82,7 +81,7 @@ public class ScoreRecord {
 			System.out.println("Error: " + e);
 		}
 		json = jsonBuilder.toString();
-		playersAndScores = new Gson().fromJson(json, LinkedTreeMap.class);
+//		playersAndScores = new Gson().fromJson(json, LinkedTreeMap.class);
 //		System.out.println(tmp);
 		System.out.println(json);
 	}
@@ -94,7 +93,7 @@ public class ScoreRecord {
 		}
 		else
 		{
-			playersAndScores.put(player, new LinkedTreeMap<String, Integer>());
+			playersAndScores.put(player, new HashMap<String, Integer>());
 			for (int i = 0; i < currentGames.size(); ++i) {
 				playersAndScores.get(player).put(currentGames.get(i), 0);
 			}
@@ -145,27 +144,32 @@ public class ScoreRecord {
 //		this.ticTacToe.set(ticTacToe);
 	}
 	
-//	public int getOthello() {
-////		return othello.get();
-//	}
-//
-//	public void setOthello(int othello) {
-////		this.othello.set(othello);
-//	}
-//
-//	public int getMemory() {
-////		return memory.get();
-//	}
-//
-//	public void setMemory(int memory) {
-////		this.memory.set(memory);
-//	}
-//
-//	public int getBattleship() {
-////		return battleship.get();
-//	}
-//
-//	public void setBattleship(int battleship) {
-////		this.battleship.set(battleship);
-//	}
+	public int getOthello() {
+		return playersAndScores.get(playerName.get()).get("Othello");
+//		return othello.get();
+	}
+
+	public void setOthello(int othello) {
+		Integer tmp = playersAndScores.get(playerName.get()).get("Othello");
+		playersAndScores.get(playerName.get()).put("Othello", tmp + 1);
+
+	}
+
+	public int getMemory() {
+		return playersAndScores.get(playerName.get()).get("Memory");
+	}
+
+	public void setMemory(int memory) {
+		Integer tmp = playersAndScores.get(playerName.get()).get("Memory");
+		playersAndScores.get(playerName.get()).put("Memory", tmp + 1);
+	}
+
+	public int getBattleship() {
+		return playersAndScores.get(playerName.get()).get("Battleship");
+	}
+
+	public void setBattleship(int battleship) {
+		Integer tmp = playersAndScores.get(playerName.get()).get("Battleship");
+		playersAndScores.get(playerName.get()).put("Battleship", tmp + 1);
+	}
 }

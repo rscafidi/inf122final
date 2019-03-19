@@ -135,47 +135,47 @@ public class LauncherController implements Initializable{
     	p1Score.updateScoreFile();
     }
     
-//    public static void incrementOthelloForP1() {
-//    	p1Score.setOthello(p1Score.getOthello() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p1Score.updateScoreFile();
-//    }
-//
-//    public static void incrementMemoryForP1() {
-//    	p1Score.setMemory(p1Score.getMemory() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p1Score.updateScoreFile();
-//    }
-//
-//    public static void incrementBattleshipForP1() {
-//    	p1Score.setBattleship(p1Score.getBattleship() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p1Score.updateScoreFile();
-//    }
-//
-//    public static void incrementTicTacToeForP2() {
-//    	p2Score.setTicTacToe(p2Score.getTicTacToe() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p2Score.updateScoreFile();
-//    }
-//
-//    public static void incrementOthelloForP2() {
-//    	p2Score.setOthello(p2Score.getOthello() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p2Score.updateScoreFile();
-//    }
-//
-//    public static void incrementMemoryForP2() {
-//    	p2Score.setMemory(p2Score.getMemory() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p2Score.updateScoreFile();
-//    }
-//
-//    public static void incrementBattleshipForP2() {
-//    	p2Score.setBattleship(p2Score.getBattleship() + 1);
-//    	Launcher.controller.leaderboard.refresh();
-//        p2Score.updateScoreFile();
-//    }
+    public static void incrementOthelloForP1() {
+    	p1Score.setOthello(p1Score.getOthello() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p1Score.updateScoreFile();
+    }
+
+    public static void incrementMemoryForP1() {
+    	p1Score.setMemory(p1Score.getMemory() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p1Score.updateScoreFile();
+    }
+
+    public static void incrementBattleshipForP1() {
+    	p1Score.setBattleship(p1Score.getBattleship() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p1Score.updateScoreFile();
+    }
+
+    public static void incrementTicTacToeForP2() {
+    	p2Score.setTicTacToe(p2Score.getTicTacToe() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p2Score.updateScoreFile();
+    }
+
+    public static void incrementOthelloForP2() {
+    	p2Score.setOthello(p2Score.getOthello() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p2Score.updateScoreFile();
+    }
+
+    public static void incrementMemoryForP2() {
+    	p2Score.setMemory(p2Score.getMemory() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p2Score.updateScoreFile();
+    }
+
+    public static void incrementBattleshipForP2() {
+    	p2Score.setBattleship(p2Score.getBattleship() + 1);
+    	Launcher.controller.leaderboard.refresh();
+        p2Score.updateScoreFile();
+    }
 	@FXML
 	protected void startTicTacToe(MouseEvent event) throws Exception {
 		//Dummy code
