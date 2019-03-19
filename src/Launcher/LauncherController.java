@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 import memGame.DrawMemoryDriver;
 import othelloGame.DrawOthelloDriver;
+import TicTacToe.DrawTicTacToeDriver;
 
 import java.io.IOException;
 
@@ -92,7 +93,7 @@ public class LauncherController {
 		//Dummy code
 		System.out.println("Starting TicTacToe...");
 		//Run game here
-        TicTacToeDriver tictactoeDriver = new TicTacToeDriver(getPlayer1Name(), getPlayer2Name(), 3, 3, "TicTacToe");
+        DrawTicTacToeDriver drawtictactoeDriver = new DrawTicTacToeDriver(p1Name.getText(), p2Name.getText(), 3, 3, "TicTacToe");
 	}
 
 	@FXML

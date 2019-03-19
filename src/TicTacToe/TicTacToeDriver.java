@@ -121,8 +121,8 @@ public class TicTacToeDriver extends GameDriver
             //System.out.println(currentPlayer);
             switchTurn();
             boardGUI.switchTurnGUI();
-            boardGUI.updatePlayer1Score();
-            boardGUI.updatePlayer2Score();
+            //boardGUI.updatePlayer1Score();
+            //boardGUI.updatePlayer2Score();
             if (isGameOver()) {
                 String w = determineWinner();
                 if(w.equals("X"))
