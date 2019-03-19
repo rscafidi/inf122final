@@ -1,6 +1,7 @@
 package memGame;
 
 import GameEnvironment.*;
+import Launcher.LauncherController;
 import boardGameGUI.BoardGame;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;

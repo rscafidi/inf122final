@@ -57,15 +57,14 @@ public class OthelloDriver extends GameDriver{
 			printBoardArray();
 			makeMove(boardGUI.colClicked, boardGUI.rowClicked);
 			printBoardArray();
-			System.out.println(currentPlayer);
 			switchTurn();
 			boardGUI.switchTurnGUI();
 			boardGUI.updatePlayer1Score();
 		    boardGUI.updatePlayer2Score();
-		    if (isGameOver()) {
-				determineWinner();
-				boardGUI.displayWinner(winner);
 		    }
+		if (isGameOver()) {
+			determineWinner();
+			boardGUI.displayWinner(winner);
 		}
 	}
 	
@@ -95,6 +94,7 @@ public class OthelloDriver extends GameDriver{
 		}
 		return false;
 	}
+	
 	@Override
 	public boolean isGameOver() {
 		if (existsLegalMoves()) {
@@ -102,7 +102,7 @@ public class OthelloDriver extends GameDriver{
 		} else {
 			switchTurn();
 			boardGUI.switchTurnGUI();
-			return existsLegalMoves();
+			return !existsLegalMoves();
 		}
 	}
 	public boolean isOccupied(int x, int y) {
@@ -175,7 +175,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getLeftCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -187,7 +187,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getRightCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -199,7 +199,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorUpper(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getUpperCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -211,7 +211,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorLower(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getLowerCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -223,7 +223,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorUpperLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getUpperLeftCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -235,7 +235,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorUpperRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getUpperRightCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -247,7 +247,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorLowerLeft(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getLowerLeftCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}
@@ -259,7 +259,7 @@ public class OthelloDriver extends GameDriver{
 	public boolean existsSameColorLowerRight(int x, int y) {
 		String target = getCurrentPlayer().getGamePiece().getName();
 		OthelloPiece cur = (OthelloPiece) getLowerRightCell(x, y);
-		while (cur != null) {
+		while (cur != null && !cur.getName().equals("-")) {
 			if (cur.getName().equals(target)) {
 				return true;
 			}

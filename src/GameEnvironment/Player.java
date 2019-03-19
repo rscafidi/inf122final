@@ -1,6 +1,7 @@
 package GameEnvironment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
 
@@ -9,7 +10,6 @@ public class Player {
 	private int playerTurn;
 	private int playerScore;
 	private GamePiece gamePiece;
-
 
 	public Player(String userName, int turn) {
 		this.userName = userName;
