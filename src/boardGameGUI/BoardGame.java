@@ -1,6 +1,7 @@
 package boardGameGUI;
 
 import GameEnvironment.Player;
+import TicTacToe.DrawTicTacToeDriver;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -56,7 +57,7 @@ public class BoardGame {
 				initializeBoard(rows, cols, "/boardGameGUI/memory-cell.jpg");
 				break;
 			case "TicTacToe":
-				initializeBoard(rows, cols, "path/to/tictactoe/cell");
+				initializeBoard(rows, cols, "/boardGameGUI/white-square-cell.jpg");
 				break;
 			case "Othello":
 				initializeBoard(rows, cols, "/boardGameGUI/white-square-cell.jpg");
@@ -150,6 +151,9 @@ public class BoardGame {
 				} else if (gameType.equals("Othello")) {
 					DrawOthelloDriver.handleMove(boardGame);
 					boardClicked = false;
+				} else if (gameType.equals("TicTacToe")) {
+					DrawTicTacToeDriver.handleMove(boardGame);
+					boardClicked = false;
 				}
 			}
 	    });
@@ -177,6 +181,9 @@ public class BoardGame {
 							boardClicked = false;
 						} else if (gameType.equals("Othello")){
 							DrawOthelloDriver.handleMove(boardGame);
+							boardClicked = false;
+						} else if (gameType.equals("TicTacToe")) {
+							DrawTicTacToeDriver.handleMove(boardGame);
 							boardClicked = false;
 						}
 	    			}
